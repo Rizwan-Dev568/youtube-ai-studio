@@ -1,13 +1,19 @@
+from app.openai_client import OpenAIClient
+
+
 class AIClient:
     """
-    Base AI Client
+    Main AI Client
 
     Future Providers:
-    - OpenAI
+    - OpenAI/OpenRouter
     - Gemini
     - Claude
     - Grok
     """
 
+    def __init__(self):
+        self.client = OpenAIClient()
+
     def ask(self, prompt: str):
-        raise NotImplementedError("Provider not implemented.")
+        return self.client.ask(prompt)
