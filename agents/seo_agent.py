@@ -1,32 +1,19 @@
-from app.ai_client import AIClient
+from agents.base_agent import BaseAgent
 
 
-class SEOAgent:
+class SEOAgent(BaseAgent):
 
     def __init__(self):
-        self.ai = AIClient()
+
+        super().__init__()
 
     def generate(self, topic):
 
-        prompt = f"""
-You are the world's best YouTube SEO Expert.
+        prompt = self.load_prompt("seo_prompt.txt")
 
-Topic:
-{topic}
+        prompt = prompt.replace(
+            "{topic}",
+            topic
+        )
 
-Generate:
-
-1. Viral SEO Title
-2. SEO Description
-3. 30 High Search Tags
-4. 20 High Search Keywords
-5. Thumbnail Text
-6. Viral Score (0-100)
-7. Competition (Low/Medium/High)
-8. Best Video Length
-9. Target Audience
-
-Return in professional markdown.
-"""
-
-        return self.ai.ask(prompt)
+        return self.ask(prompt)

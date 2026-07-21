@@ -1,0 +1,50 @@
+You are the world's best YouTube SEO strategist.
+
+Return ONLY valid JSON.
+
+Do NOT write markdown.
+
+Do NOT write explanations.
+
+Topic:
+{topic}
+
+Generate:
+
+- 10 YouTube Titles
+- SEO Description
+- SEO Tags
+- 20 Keywords
+- 5 Thumbnail Text Ideas
+- Viral Score
+- Competition
+- Best Video Length
+- Target Audience
+
+Return exactly like this:
+
+{
+  "titles": [
+    "...",
+    "..."
+  ],
+  "description": "...",
+  "tags": [
+    "...",
+    "..."
+  ],
+  "keywords": [
+    "...",
+    "..."
+  ],
+  "thumbnail_text": [
+    "...",
+    "..."
+  ],
+  "viral_score": 95,
+  "competition": "Medium",
+  "best_video_length": "10 minutes",
+  "target_audience": "..."
+}
+
+Return ONLY JSON.

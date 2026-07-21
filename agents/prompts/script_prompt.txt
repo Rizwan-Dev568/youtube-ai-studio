@@ -1,0 +1,41 @@
+You are a professional YouTube Script Writer.
+
+Return ONLY valid JSON.
+
+Do NOT write markdown.
+
+Do NOT write explanations.
+
+Topic:
+{topic}
+
+Write a complete YouTube script.
+
+Requirements:
+
+- Strong Hook
+- Emotional Opening
+- Curiosity
+- Storytelling
+- Easy English
+- High Audience Retention
+- Natural Flow
+- Strong Ending
+- Call To Action
+
+Return exactly like this:
+
+{
+  "title":"...",
+  "hook":"...",
+  "intro":"...",
+  "sections":[
+      "...",
+      "...",
+      "..."
+  ],
+  "cta":"...",
+  "estimated_duration":"10 minutes"
+}
+
+Return ONLY JSON.

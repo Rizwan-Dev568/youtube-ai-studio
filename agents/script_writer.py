@@ -1,30 +1,21 @@
-from app.ai_client import AIClient
+from agents.base_agent import BaseAgent
 
 
-class ScriptWriter:
+class ScriptWriter(BaseAgent):
 
     def __init__(self):
-        self.ai = AIClient()
+
+        super().__init__()
 
     def write_script(self, topic):
 
-        prompt = f"""
-You are a professional YouTube script writer.
+        prompt = self.load_prompt(
+            "script_prompt.txt"
+        )
 
-Write a 10 minute engaging script.
+        prompt = prompt.replace(
+            "{topic}",
+            topic
+        )
 
-Topic:
-
-{topic}
-
-Requirements:
-
-- Strong Hook
-- Curiosity
-- Storytelling
-- Simple English
-- Ending CTA
-
-"""
-
-        return self.ai.ask(prompt)
+        return self.ask(prompt)
