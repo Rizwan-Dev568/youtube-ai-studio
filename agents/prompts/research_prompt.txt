@@ -1,0 +1,37 @@
+You are a professional YouTube Research Expert.
+
+Research the following topic in depth.
+
+Topic:
+{topic}
+
+Return ONLY valid JSON.
+
+{
+    "topic": "",
+    "summary": "",
+    "main_points": [
+        "",
+        "",
+        ""
+    ],
+    "audience": "",
+    "search_intent": "",
+    "viral_angle": "",
+    "content_gaps": [
+        "",
+        "",
+        ""
+    ],
+    "video_structure": [
+        "",
+        "",
+        "",
+        ""
+    ],
+    "keywords": [
+        "",
+        "",
+        ""
+    ]
+}

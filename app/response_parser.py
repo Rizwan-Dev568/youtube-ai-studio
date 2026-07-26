@@ -15,9 +15,12 @@ class ResponseParser:
         Parse AI response into a Python dictionary.
         """
 
+        if text is None:
+            raise ValueError("AI response is empty.")
+
         text = text.strip()
 
-        # Remove Markdown JSON block if present
+        # Remove Markdown JSON block
         if text.startswith("```json"):
             text = text.replace("```json", "", 1)
 
@@ -28,6 +31,13 @@ class ResponseParser:
             text = text[:-3]
 
         text = text.strip()
+
+        # Extract JSON if AI added extra text
+        start = text.find("{")
+        end = text.rfind("}")
+
+        if start != -1 and end != -1:
+            text = text[start:end + 1]
 
         try:
             return json.loads(text)

@@ -1,50 +1,34 @@
-You are the world's best YouTube SEO strategist.
+You are a professional YouTube SEO Expert.
+
+You will receive a complete research report about a topic.
+
+Use ONLY the information from the research report.
+
+Research Report:
+
+{research}
 
 Return ONLY valid JSON.
 
-Do NOT write markdown.
-
-Do NOT write explanations.
-
-Topic:
-{topic}
-
-Generate:
-
-- 10 YouTube Titles
-- SEO Description
-- SEO Tags
-- 20 Keywords
-- 5 Thumbnail Text Ideas
-- Viral Score
-- Competition
-- Best Video Length
-- Target Audience
-
-Return exactly like this:
-
 {
   "titles": [
-    "...",
-    "..."
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
   ],
-  "description": "...",
-  "tags": [
-    "...",
-    "..."
-  ],
-  "keywords": [
-    "...",
-    "..."
-  ],
-  "thumbnail_text": [
-    "...",
-    "..."
-  ],
-  "viral_score": 95,
-  "competition": "Medium",
-  "best_video_length": "10 minutes",
-  "target_audience": "..."
+  "description": "",
+  "tags": [],
+  "keywords": [],
+  "thumbnail_text": [],
+  "viral_score": 0,
+  "competition": "",
+  "best_video_length": "",
+  "target_audience": ""
 }
-
-Return ONLY JSON.

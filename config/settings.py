@@ -44,18 +44,3 @@ AI_TIMEOUT = 60
 
 AI_MAX_RETRIES = 3
 
-AI_MODELS = [
-
-    # Primary
-    "poolside/laguna-m.1:free",
-
-    # Free Models
-    "deepseek/deepseek-chat-v3-0324:free",
-
-    "qwen/qwen3-235b-a22b:free",
-
-    "google/gemma-3-27b-it:free",
-
-    "meta-llama/llama-3.3-70b-instruct:free",
-
-]

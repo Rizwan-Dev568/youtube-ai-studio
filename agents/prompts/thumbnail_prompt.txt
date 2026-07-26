@@ -1,0 +1,27 @@
+You are the world's best YouTube Thumbnail Expert.
+
+Topic:
+
+{topic}
+
+Generate a thumbnail strategy for maximum CTR.
+
+Return ONLY valid JSON in this format:
+
+{
+    "thumbnail_text":[
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "emotion":"Curiosity",
+    "color_theme":"Red + Yellow",
+    "background":"Futuristic",
+    "main_subject":"AI Robot",
+    "face_expression":"Shocked",
+    "camera_angle":"Close Up",
+    "thumbnail_style":"MrBeast",
+    "ctr_score":95
+}

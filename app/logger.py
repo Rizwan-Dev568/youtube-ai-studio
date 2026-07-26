@@ -1,19 +1,25 @@
-from datetime import datetime
+"""
+Project Logger
+"""
+
+import logging
+from pathlib import Path
 
 
-class Logger:
+LOG_FOLDER = Path("logs")
+LOG_FOLDER.mkdir(exist_ok=True)
 
-    @staticmethod
-    def info(message):
-        current_time = datetime.now().strftime("%H:%M:%S")
-        print(f"[{current_time}] [INFO] {message}")
+LOG_FILE = LOG_FOLDER / "youtube_ai_studio.log"
 
-    @staticmethod
-    def success(message):
-        current_time = datetime.now().strftime("%H:%M:%S")
-        print(f"[{current_time}] [SUCCESS] {message}")
 
-    @staticmethod
-    def error(message):
-        current_time = datetime.now().strftime("%H:%M:%S")
-        print(f"[{current_time}] [ERROR] {message}")
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s",
+    handlers=[
+        logging.FileHandler(LOG_FILE, encoding="utf-8"),
+        logging.StreamHandler()
+    ]
+)
+
+
+logger = logging.getLogger("YouTubeAIStudio")

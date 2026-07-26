@@ -2,11 +2,17 @@ from openai import OpenAI
 from openai import APIError
 from openai import RateLimitError
 
+import time
+
+from app.logger import logger
+from cache.cache_manager import CacheManager
+
 from config.settings import (
     OPENROUTER_API_KEY,
     OPENROUTER_BASE_URL,
-    AI_MODELS,
 )
+
+from config.ai_models import OPENROUTER_MODELS
 
 
 class OpenAIClient:
@@ -18,50 +24,84 @@ class OpenAIClient:
             base_url=OPENROUTER_BASE_URL,
         )
 
+        self.cache = CacheManager()
+
     def ask(self, prompt):
 
-        last_error = None
+        logger.info("Starting AI Request")
 
-        for model in AI_MODELS:
+        start_time = time.time()
+
+        cached = self.cache.load(prompt)
+
+        if cached is not None:
+
+            logger.info("Using Cached Response")
+
+            print("\nUsing Cached Response")
+
+            return cached
+
+        errors = []
+
+        for model in OPENROUTER_MODELS:
 
             try:
 
                 print(f"\nTrying: {model}")
 
                 response = self.client.chat.completions.create(
-
                     model=model,
-
                     messages=[
                         {
                             "role": "user",
-                            "content": prompt
+                            "content": prompt,
                         }
                     ]
                 )
 
                 print(f"Success: {model}")
 
-                return response.choices[0].message.content
+                logger.info(f"Success: {model}")
 
-            except RateLimitError as e:
+                result = response.choices[0].message.content
 
-                print(f"Rate Limit: {model}")
+                self.cache.save(
+                    prompt,
+                    result
+                )
 
-                last_error = e
+                logger.info(
+                    f"Response Time: {time.time() - start_time:.2f} sec"
+                )
+
+                return result
+
+            except RateLimitError:
+
+                logger.warning(f"Rate Limited: {model}")
+
+                print(f"Rate Limited: {model}")
+
+                errors.append(f"{model} -> Rate Limit")
 
             except APIError as e:
 
+                logger.error(f"{model} -> {e}")
+
                 print(f"API Error: {model}")
 
-                last_error = e
+                errors.append(f"{model} -> {e}")
 
             except Exception as e:
 
+                logger.exception(e)
+
                 print(f"Failed: {model}")
 
-                last_error = e
+                errors.append(f"{model} -> {e}")
 
         raise Exception(
-            f"\nAll AI models failed.\n\n{last_error}"
+            "No AI model is currently available.\n\n"
+            + "\n".join(errors)
         )

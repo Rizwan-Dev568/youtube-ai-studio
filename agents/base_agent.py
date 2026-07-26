@@ -31,4 +31,9 @@ class BaseAgent:
 
         response = self.ai.ask(prompt)
 
+        if response is None:
+            raise Exception(
+                "AI returned an empty response."
+            )
+
         return ResponseParser.parse(response)
