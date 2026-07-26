@@ -1,46 +1,48 @@
+"""
+Application Settings
+"""
+
 import os
 from dotenv import load_dotenv
 
-# Load .env
 load_dotenv()
 
-PROJECT_ROOT = os.path.dirname(
-    os.path.dirname(
-        os.path.abspath(__file__)
-    )
-)
-
-OUTPUT_FOLDER = os.path.join(
-    PROJECT_ROOT,
-    "output"
-)
-
-DATA_FOLDER = os.path.join(
-    PROJECT_ROOT,
-    "data"
-)
-
-PROMPTS_FOLDER = os.path.join(
-    PROJECT_ROOT,
-    "prompts"
-)
-
-# ============================
+# ==========================
 # API Keys
-# ============================
+# ==========================
 
-YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY", "")
 
-# ============================
-# AI Configuration
-# ============================
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
+
+
+# ==========================
+# OpenRouter
+# ==========================
 
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
-AI_TIMEOUT = 60
 
-AI_MAX_RETRIES = 3
+# ==========================
+# OpenRouter Models
+# ==========================
 
+OPENROUTER_MODELS = [
+
+    # Primary
+    "poolside/laguna-m.1:free",
+
+    # Free Fallbacks
+    "mistralai/devstral-small:free",
+
+    "moonshotai/kimi-k2:free",
+
+    "z-ai/glm-4.5-air:free",
+
+    "openai/gpt-oss-20b:free",
+
+]

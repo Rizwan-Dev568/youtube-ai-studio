@@ -1,24 +1,38 @@
-from pathlib import Path
-
 from agents.base_agent import BaseAgent
-from app.file_manager import FileManager
+import json
 
 
 class ThumbnailAgent(BaseAgent):
 
-    def generate(self, topic):
+    def __init__(self):
+        super().__init__()
 
-        prompt_path = (
-            Path(__file__).parent
-            / "prompts"
-            / "thumbnail_prompt.txt"
+    def generate(self, research, seo):
+
+        if isinstance(research, dict):
+            research = json.dumps(
+                research,
+                indent=2
+            )
+
+        if isinstance(seo, dict):
+            seo = json.dumps(
+                seo,
+                indent=2
+            )
+
+        prompt = self.load_prompt(
+            "thumbnail_prompt.txt"
         )
 
-        prompt = FileManager.read_text(prompt_path)
+        prompt = prompt.replace(
+            "{research}",
+            research
+        )
 
         prompt = prompt.replace(
-            "{topic}",
-            topic
+            "{seo}",
+            seo
         )
 
         return self.ask(prompt)

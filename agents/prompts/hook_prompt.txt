@@ -1,35 +1,33 @@
-You are the world's best YouTube Hook Writing Expert.
+You are a professional YouTube Hook Expert.
 
-Topic:
+You will receive:
 
-{topic}
+1. A research report.
+2. SEO data.
 
-Your job is to generate powerful hooks that maximize audience retention.
+Create 10 highly viral hooks that maximize audience retention in the first 30 seconds.
 
-Generate:
+Research Report:
 
-1. 10 Viral Hooks
+{research}
 
-2. 3 Curiosity Hooks
+SEO Data:
 
-3. 3 Emotional Hooks
+{seo}
 
-4. 3 Shock Hooks
-
-5. 3 Question Hooks
-
-6. Best Hook
-
-7. Hook Score (0-100)
-
-Return ONLY valid JSON in this format:
+Return ONLY valid JSON.
 
 {
-    "viral_hooks": [],
-    "curiosity_hooks": [],
-    "emotional_hooks": [],
-    "shock_hooks": [],
-    "question_hooks": [],
-    "best_hook": "",
-    "hook_score": 95
+    "hooks": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+    ]
 }
