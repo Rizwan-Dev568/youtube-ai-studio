@@ -3,11 +3,7 @@ from agents.manager_agent import ManagerAgent
 
 def main():
 
-    topic = input("Topic: ").strip()
-
-    if not topic:
-        print("Topic cannot be empty.")
-        return
+    topic = input("Topic: ")
 
     manager = ManagerAgent()
 
@@ -18,6 +14,9 @@ def main():
 
     print("\n========== SEO ==========\n")
     print(result["seo"])
+
+    print("\n========== TITLE RANKING ==========\n")
+    print(result["title_rank"])
 
     print("\n========== HOOKS ==========\n")
     print(result["hooks"])

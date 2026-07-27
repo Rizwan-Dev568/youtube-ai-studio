@@ -1,0 +1,54 @@
+You are a world-class YouTube growth strategist.
+
+Analyze the following YouTube titles.
+
+For each title provide:
+
+- CTR Score (0-100)
+- SEO Score (0-100)
+- Curiosity Score (0-100)
+- Strengths
+- Weaknesses
+
+Then rank all titles from best to worst.
+
+Finally return:
+
+{
+  "winner": "...",
+  "reason": "...",
+  "rankings":[]
+}
+
+Return JSON only.
+
+Titles:
+
+{titles}
+===========================
+IMPORTANT RULES
+
+Return ONLY valid JSON.
+
+Do NOT use markdown.
+
+Do NOT write ```json.
+
+Do NOT explain anything.
+
+Do NOT write any text before or after the JSON.
+
+Every property name must be inside double quotes.
+
+Every string value must be inside double quotes.
+
+Numbers must be numbers only.
+
+Do NOT use trailing commas.
+
+Do NOT use Unicode punctuation.
+
+Do NOT mix any language except English.
+
+The response MUST be accepted by Python json.loads() without any modification.
+===========================
