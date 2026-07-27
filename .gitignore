@@ -22,3 +22,19 @@ output/
 # OS Files
 .DS_Store
 Thumbs.db
+# Cache
+cache/
+
+# Python
+__pycache__/
+*.pyc
+
+# Environment
+.env
+
+# IDE
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
