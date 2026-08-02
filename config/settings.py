@@ -25,24 +25,3 @@ OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 # ==========================
 
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
-
-
-# ==========================
-# OpenRouter Models
-# ==========================
-
-OPENROUTER_MODELS = [
-
-    # Primary
-    "poolside/laguna-m.1:free",
-
-    # Free Fallbacks
-    "mistralai/devstral-small:free",
-
-    "moonshotai/kimi-k2:free",
-
-    "z-ai/glm-4.5-air:free",
-
-    "openai/gpt-oss-20b:free",
-
-]

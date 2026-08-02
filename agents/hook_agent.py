@@ -1,8 +1,16 @@
-from agents.base_agent import BaseAgent
+"""
+Hook Agent
+"""
+
 import json
+
+from agents.base_agent import BaseAgent
+from app.output_schema import HOOK_SCHEMA
 
 
 class HookAgent(BaseAgent):
+
+    schema = HOOK_SCHEMA
 
     def __init__(self):
         super().__init__()
@@ -12,13 +20,15 @@ class HookAgent(BaseAgent):
         if isinstance(research, dict):
             research = json.dumps(
                 research,
-                indent=2
+                indent=2,
+                ensure_ascii=False
             )
 
         if isinstance(seo, dict):
             seo = json.dumps(
                 seo,
-                indent=2
+                indent=2,
+                ensure_ascii=False
             )
 
         prompt = self.load_prompt(
@@ -35,4 +45,7 @@ class HookAgent(BaseAgent):
             seo
         )
 
-        return self.ask(prompt)
+        return self.ask(
+            prompt,
+            self.schema
+        )

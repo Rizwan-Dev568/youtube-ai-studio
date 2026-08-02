@@ -1,47 +1,42 @@
 """
 Output Manager
 
-Saves workflow results.
+Automatically saves every agent output.
 """
 
+import json
 from pathlib import Path
-
-from app.file_manager import FileManager
-from config.settings import OUTPUT_FOLDER
 
 
 class OutputManager:
 
+    OUTPUT_FOLDER = Path("output")
+
     @staticmethod
-    def save(topic, result):
+    def save(name, data):
 
-        folder_name = (
-            topic
-            .replace(" ", "_")
-            .replace("/", "_")
-            .replace("\\", "_")
+        OutputManager.OUTPUT_FOLDER.mkdir(
+            exist_ok=True
         )
 
-        output_path = (
-            Path(OUTPUT_FOLDER)
-            / folder_name
+        file = (
+            OutputManager.OUTPUT_FOLDER
+            / f"{name}.json"
         )
 
-        FileManager.create_folder(output_path)
+        with open(
+            file,
+            "w",
+            encoding="utf-8"
+        ) as f:
 
-        # Complete Result
-        FileManager.write_json(
-            output_path / "result.json",
-            result
-        )
-
-        # Individual Sections
-        for key, value in result.items():
-
-            if key == "topic":
-                continue
-
-            FileManager.write_json(
-                output_path / f"{key}.json",
-                value
+            json.dump(
+                data,
+                f,
+                indent=4,
+                ensure_ascii=False
             )
+
+        print(
+            f"\n✅ Saved: {file}"
+        )

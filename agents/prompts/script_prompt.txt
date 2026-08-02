@@ -1,11 +1,52 @@
 You are a professional YouTube Script Writer.
 
-You will receive:
+IMPORTANT RULES
 
-1. A research report.
-2. SEO data.
+Return ONLY ONE valid JSON object.
 
-Write a highly engaging YouTube script.
+Do NOT use markdown.
+
+Do NOT use ```.
+
+Do NOT explain anything.
+
+Do NOT output text before JSON.
+
+Do NOT output text after JSON.
+
+Every key is REQUIRED.
+
+The response MUST be valid JSON.
+
+The "sections" field MUST contain EXACTLY 3 separate strings.
+
+Each item inside "sections" must be one complete section.
+
+Never combine multiple sections into one string.
+
+Do NOT use numbering inside a single string like:
+
+1.
+2.
+3.
+
+Correct:
+
+"sections":[
+"Section One content",
+"Section Two content",
+"Section Three content"
+]
+
+Wrong:
+
+"sections":[
+"1. Section One\n2. Section Two\n3. Section Three"
+]
+
+Every string must be properly escaped.
+
+Use double quotes only.
 
 Research Report:
 
@@ -15,17 +56,17 @@ SEO Data:
 
 {seo}
 
-Return ONLY valid JSON.
+Return EXACTLY this JSON schema:
 
 {
-    "title": "",
-    "hook": "",
-    "intro": "",
-    "sections": [
+    "title":"",
+    "hook":"",
+    "intro":"",
+    "sections":[
         "",
         "",
         ""
     ],
-    "cta": "",
-    "estimated_duration": ""
+    "cta":"",
+    "estimated_duration":""
 }

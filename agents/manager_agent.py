@@ -5,6 +5,8 @@ from agents.hook_agent import HookAgent
 from agents.thumbnail_agent import ThumbnailAgent
 from agents.script_writer import ScriptWriter
 
+from app.output_manager import OutputManager
+
 
 class ManagerAgent:
 
@@ -19,36 +21,70 @@ class ManagerAgent:
 
     def run(self, topic):
 
-        print("\n[1/6] Researching Topic...")
+        print("\n[1/7] Researching Topic...")
+
         research = self.research.research(topic)
+        OutputManager.save(
+            "research",
+            research
+        )
 
-        print("\n[2/6] Generating SEO...")
+        print("\n[2/7] Generating SEO...")
+
         seo = self.seo.generate(research)
+        OutputManager.save(
+            "seo",
+            seo
+        )
 
-        print("\n[3/6] Ranking Titles...")
+        print("\n[3/7] Ranking Titles...")
+
         title_rank = self.title_ranker.generate(
             seo["titles"]
         )
 
-        print("\n[4/6] Generating Hooks...")
+        OutputManager.save(
+            "title_rank",
+            title_rank
+        )
+
+        print("\n[4/7] Generating Hooks...")
+
         hooks = self.hook.generate(
             research,
             seo
         )
 
-        print("\n[5/6] Generating Thumbnail...")
+        OutputManager.save(
+            "hooks",
+            hooks
+        )
+
+        print("\n[5/7] Generating Thumbnail...")
+
         thumbnail = self.thumbnail.generate(
             research,
             seo
         )
 
-        print("\n[6/6] Writing Script...")
+        OutputManager.save(
+            "thumbnail",
+            thumbnail
+        )
+
+        print("\n[6/7] Writing Script...")
+
         script = self.script.write_script(
             research,
             seo
         )
 
-        return {
+        OutputManager.save(
+            "script",
+            script
+        )
+
+        workflow = {
             "research": research,
             "seo": seo,
             "title_rank": title_rank,
@@ -56,3 +92,12 @@ class ManagerAgent:
             "thumbnail": thumbnail,
             "script": script,
         }
+
+        OutputManager.save(
+            "workflow",
+            workflow
+        )
+
+        print("\n[7/7] Workflow Complete.")
+
+        return workflow

@@ -1,0 +1,26 @@
+You are a professional YouTube Content Strategist.
+
+Analyze the complete YouTube package below.
+
+{data}
+
+Return ONLY valid JSON.
+
+{
+  "overall_score": 0,
+  "seo_score": 0,
+  "ctr_score": 0,
+  "retention_score": 0,
+  "thumbnail_score": 0,
+  "script_score": 0,
+  "strengths": [
+    ""
+  ],
+  "weaknesses": [
+    ""
+  ],
+  "improvements": [
+    ""
+  ],
+  "final_verdict": ""
+}

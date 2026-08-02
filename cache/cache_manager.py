@@ -17,7 +17,7 @@ class CacheManager:
     def _filename(self, prompt):
 
         name = hashlib.md5(
-            prompt.encode()
+            prompt.encode("utf-8")
         ).hexdigest()
 
         return os.path.join(
@@ -27,18 +27,7 @@ class CacheManager:
 
     def load(self, prompt):
 
-        file = self._filename(prompt)
-
-        if os.path.exists(file):
-
-            with open(
-                file,
-                "r",
-                encoding="utf-8"
-            ) as f:
-
-                return json.load(f)
-
+        # Disable cache while development
         return None
 
     def save(self, prompt, response):

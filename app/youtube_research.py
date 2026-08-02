@@ -1,5 +1,4 @@
 from app.youtube_client import YouTubeClient
-from app.trend_analyzer import TrendAnalyzer
 from app.video_ranker import VideoRanker
 from app.opportunity_analyzer import OpportunityAnalyzer
 
@@ -7,34 +6,52 @@ from app.opportunity_analyzer import OpportunityAnalyzer
 class YouTubeResearch:
 
     def __init__(self):
+
         self.youtube = YouTubeClient()
-        self.analyzer = TrendAnalyzer()
         self.ranker = VideoRanker()
         self.opportunity = OpportunityAnalyzer()
 
     def research(self, topic):
 
-        # Step 1: Search videos
+        # Search
         search = self.youtube.search_videos(topic)
 
-        # Step 2: Get video IDs
         ids = [
             item["id"]["videoId"]
             for item in search["items"]
         ]
 
-        # Step 3: Get video details
         details = self.youtube.get_video_details(ids)
 
-        # Step 4: Rank videos
         ranked = self.ranker.rank(details)
 
-        # Step 5: Analyze opportunity
         report = self.opportunity.analyze(ranked)
 
-        # Final result
+        # Keep only Top 5 videos
+        top_videos = []
+
+        for video in ranked[:5]:
+
+            top_videos.append({
+
+                "title": video.get("title"),
+
+                "views": video.get("views"),
+
+                "likes": video.get("likes"),
+
+                "channel": video.get("channel"),
+
+                "score": video.get("score")
+
+            })
+
         return {
+
             "topic": topic,
-            "report": report,
-            "videos": ranked
+
+            "summary": report,
+
+            "top_videos": top_videos
+
         }

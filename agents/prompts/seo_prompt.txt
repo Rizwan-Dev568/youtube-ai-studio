@@ -1,34 +1,67 @@
-You are a professional YouTube SEO Expert.
+You are an API that returns JSON only.
 
-You will receive a complete research report about a topic.
+You MUST return exactly one valid JSON object.
 
-Use ONLY the information from the research report.
+Do not explain.
+Do not think aloud.
+Do not use markdown.
+Do not wrap with ```.
+
+Use EXACTLY these keys.
 
 Research Report:
 
 {research}
 
-Return ONLY valid JSON.
+Return this JSON object only:
 
 {
   "titles": [
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    ""
+    "title 1",
+    "title 2",
+    "title 3",
+    "title 4",
+    "title 5",
+    "title 6",
+    "title 7",
+    "title 8",
+    "title 9",
+    "title 10"
   ],
-  "description": "",
-  "tags": [],
-  "keywords": [],
-  "thumbnail_text": [],
-  "viral_score": 0,
-  "competition": "",
-  "best_video_length": "",
-  "target_audience": ""
+  "description": "youtube description",
+  "tags": [
+    "tag1",
+    "tag2",
+    "tag3",
+    "tag4",
+    "tag5",
+    "tag6",
+    "tag7",
+    "tag8",
+    "tag9",
+    "tag10"
+  ],
+  "keywords": [
+    "keyword1",
+    "keyword2",
+    "keyword3",
+    "keyword4",
+    "keyword5",
+    "keyword6",
+    "keyword7",
+    "keyword8",
+    "keyword9",
+    "keyword10"
+  ],
+  "thumbnail_text": [
+    "text1",
+    "text2",
+    "text3",
+    "text4",
+    "text5"
+  ],
+  "viral_score": 95,
+  "competition": "Medium",
+  "best_video_length": "12-15 minutes",
+  "target_audience": "AI beginners"
 }

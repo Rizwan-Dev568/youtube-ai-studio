@@ -1,11 +1,14 @@
 from agents.base_agent import BaseAgent
+from app.output_schema import SCRIPT_SCHEMA
+
 import json
 
 
 class ScriptWriter(BaseAgent):
 
-    def __init__(self):
+    schema = SCRIPT_SCHEMA
 
+    def __init__(self):
         super().__init__()
 
     def write_script(self, research, seo):
@@ -13,13 +16,15 @@ class ScriptWriter(BaseAgent):
         if isinstance(research, dict):
             research = json.dumps(
                 research,
-                indent=2
+                indent=2,
+                ensure_ascii=False
             )
 
         if isinstance(seo, dict):
             seo = json.dumps(
                 seo,
-                indent=2
+                indent=2,
+                ensure_ascii=False
             )
 
         prompt = self.load_prompt(
@@ -36,4 +41,7 @@ class ScriptWriter(BaseAgent):
             seo
         )
 
-        return self.ask(prompt)
+        return self.ask(
+            prompt,
+            schema=self.schema
+        )

@@ -1,8 +1,12 @@
 from agents.base_agent import BaseAgent
+from app.output_schema import SEO_SCHEMA
+
 import json
 
 
 class SEOAgent(BaseAgent):
+
+    schema = SEO_SCHEMA
 
     def __init__(self):
         super().__init__()
