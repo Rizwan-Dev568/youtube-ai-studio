@@ -57,3 +57,30 @@ SCRIPT_SCHEMA = {
     "cta": str,
     "estimated_duration": str,
 }
+
+
+REVIEW_SCHEMA = {
+    "overall_score": int,
+    "strengths": list,
+    "weaknesses": list,
+    "improvements": list,
+    "approved": bool,
+    "final_comments": str,
+}
+
+
+DIRECTOR_SCHEMA = {
+    "overall_score": int,
+    "approved": bool,
+    "strengths": list,
+    "weaknesses": list,
+    "improvements": list,
+    "final_title": str,
+    "final_hook": str,
+    "final_comment": str,
+}
+
+
+SCENE_PLAN_SCHEMA = {
+    "scenes": list,
+}

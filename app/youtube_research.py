@@ -13,13 +13,27 @@ class YouTubeResearch:
 
     def research(self, topic):
 
-        # Search
         search = self.youtube.search_videos(topic)
 
-        ids = [
-            item["id"]["videoId"]
-            for item in search["items"]
-        ]
+        ids = []
+
+        for item in search.get("items", []):
+
+            video_id = (
+                item.get("id", {})
+                .get("videoId")
+            )
+
+            if video_id:
+                ids.append(video_id)
+
+        if not ids:
+
+            return {
+                "topic": topic,
+                "summary": {},
+                "top_videos": []
+            }
 
         details = self.youtube.get_video_details(ids)
 
@@ -27,7 +41,6 @@ class YouTubeResearch:
 
         report = self.opportunity.analyze(ranked)
 
-        # Keep only Top 5 videos
         top_videos = []
 
         for video in ranked[:5]:
@@ -36,11 +49,30 @@ class YouTubeResearch:
 
                 "title": video.get("title"),
 
+                "video_id": video.get("video_id"),
+
+                "video_url":
+                    f"https://www.youtube.com/watch?v={video.get('video_id')}",
+
+                "channel": video.get("channel"),
+
+                "channel_id": video.get("channel_id"),
+
+                "published_at": video.get("published_at"),
+
+                "thumbnail": video.get("thumbnail"),
+
+                "description": video.get("description"),
+
                 "views": video.get("views"),
 
                 "likes": video.get("likes"),
 
-                "channel": video.get("channel"),
+                "comments": video.get("comments"),
+
+                "duration": video.get("duration"),
+
+                "days_old": video.get("days_old"),
 
                 "score": video.get("score")
 

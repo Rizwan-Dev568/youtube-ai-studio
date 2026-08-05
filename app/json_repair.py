@@ -15,86 +15,153 @@ class JsonRepair:
             return None
 
         if not isinstance(text, str):
-            return text
+            text = str(text)
 
         text = text.strip()
 
         # Remove markdown
-        text = re.sub(r"^```json", "", text, flags=re.I)
-        text = re.sub(r"^```", "", text)
-        text = re.sub(r"```$", "", text)
+        text = re.sub(r"^```json\s*", "", text, flags=re.I)
+        text = re.sub(r"^```\s*", "", text)
+        text = re.sub(r"\s*```$", "", text)
 
-        # Keep only JSON
+        # Keep only JSON object
         start = text.find("{")
         end = text.rfind("}")
 
         if start != -1 and end != -1:
             text = text[start:end + 1]
 
-        # Remove trailing commas
-        text = re.sub(r",(\s*[}\]])", r"\1", text)
-
-        # Replace smart quotes
+        # Normalize quotes
         text = (
             text.replace("“", '"')
-            .replace("”", '"')
-            .replace("’", "'")
+                .replace("”", '"')
+                .replace("‘", "'")
+                .replace("’", "'")
         )
 
-        # Remove invalid control chars
+        # Remove control characters
         text = re.sub(
             r"[\x00-\x08\x0B\x0C\x0E-\x1F]",
             "",
             text
         )
 
+        # Remove trailing commas
+        text = re.sub(
+            r",(\s*[}\]])",
+            r"\1",
+            text
+        )
+
+        # ---------- Common AI Fixes ----------
+
+        # CTA accidentally inside sections
+        text = re.sub(
+            r'"CTA"\s*:',
+            '"cta":',
+            text
+        )
+
+        # Double commas
+        text = re.sub(
+            r",\s*,",
+            ",",
+            text
+        )
+
+        # Missing comma between ] and next key
+        text = re.sub(
+            r'"\]\s*"',
+            '"],"',
+            text
+        )
+
         return text.strip()
+
+    @staticmethod
+    def second_pass(text):
+
+        # Remove trailing commas
+        text = re.sub(
+            r",(\s*[}\]])",
+            r"\1",
+            text
+        )
+
+        # Balance braces
+        while text.count("{") > text.count("}"):
+            text += "}"
+
+        while text.count("[") > text.count("]"):
+            text += "]"
+
+        return text
 
     @staticmethod
     def loads(text):
 
         repaired = JsonRepair.repair(text)
 
-        print("\n======================")
+        print("\n" + "=" * 80)
         print("JSON AFTER REPAIR")
-        print("======================")
+        print("=" * 80)
         print(repaired)
-        print("======================\n")
+        print("=" * 80)
 
         try:
+
             return json.loads(repaired)
 
-        except json.JSONDecodeError as e:
+        except Exception as first_error:
 
-            print("\nFirst JSON Parse Failed")
-            print(e)
+            print("\nFirst Parse Failed")
+            print(first_error)
 
-            repaired = JsonRepair.second_pass(repaired)
+            repaired = JsonRepair.second_pass(
+                repaired
+            )
 
-            print("\n======================")
-            print("JSON AFTER SECOND PASS")
-            print("======================")
+            print("\n" + "=" * 80)
+            print("SECOND PASS JSON")
+            print("=" * 80)
             print(repaired)
-            print("======================\n")
+            print("=" * 80)
 
-            return json.loads(repaired)
+            try:
 
-    @staticmethod
-    def second_pass(text):
+                return json.loads(repaired)
 
-        # Remove trailing commas again
-        text = re.sub(r",(\s*[}\]])", r"\1", text)
+            except Exception:
 
-        # Close array if missing
-        text = re.sub(
-            r'("sections"\s*:\s*\[[^\]]*?)("cta")',
-            r'\1],\2',
-            text,
-            flags=re.S,
-        )
+                # ---------- Last Chance AI Fix ----------
 
-        # Close object if missing
-        if text.count("{") > text.count("}"):
-            text += "}"
+                try:
 
-        return text
+                    # Remove malformed CTA inside sections
+                    repaired = re.sub(
+                        r',"cta"\s*:\s*".*?"\s*\]',
+                        '"]',
+                        repaired,
+                        flags=re.S
+                    )
+
+                    repaired = JsonRepair.second_pass(
+                        repaired
+                    )
+
+                    print("\n" + "=" * 80)
+                    print("LAST CHANCE REPAIR")
+                    print("=" * 80)
+                    print(repaired)
+                    print("=" * 80)
+
+                    return json.loads(repaired)
+
+                except Exception as last_error:
+
+                    print("\nJSON PARSE FAILED")
+                    print(last_error)
+
+                    raise Exception(
+                        f"\nInvalid JSON returned by AI.\n\n{last_error}"
+                    )

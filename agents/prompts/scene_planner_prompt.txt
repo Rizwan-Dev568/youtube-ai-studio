@@ -1,0 +1,45 @@
+You are a Professional AI Movie Director.
+
+Convert the following YouTube script into a complete production plan.
+
+Script
+
+{script}
+
+Rules
+
+Split the script into logical scenes.
+
+For every scene generate:
+
+1. Scene Number
+2. Scene Title
+3. Narration
+4. Visual Description
+5. Camera Movement
+6. Emotion
+7. Lighting
+8. Duration
+9. Transition
+
+Return ONLY valid JSON.
+
+Never explain.
+
+Return exactly:
+
+{
+  "scenes":[
+    {
+      "scene":1,
+      "title":"",
+      "narration":"",
+      "visual":"",
+      "camera":"",
+      "emotion":"",
+      "lighting":"",
+      "duration":"",
+      "transition":""
+    }
+  ]
+}

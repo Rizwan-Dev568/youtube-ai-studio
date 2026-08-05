@@ -1,39 +1,36 @@
 """
-Memory Manager
+Professional Memory Manager
 
-Stores long-term project memory for all AI agents.
+Stores workflow memory, topic history,
+scores, and future AI knowledge.
 """
 
 import json
 from pathlib import Path
+from datetime import datetime
 
 
 class MemoryManager:
 
+    MEMORY_FILE = (
+        Path(__file__).parent
+        / "memory_store.json"
+    )
+
+    MAX_HISTORY = 100
+
     def __init__(self):
 
-        self.memory_folder = Path("memory")
+        if not self.MEMORY_FILE.exists():
 
-        self.memory_folder.mkdir(
-            exist_ok=True
-        )
+            self._save({})
 
-    def _file(self, name):
-
-        return self.memory_folder / f"{name}.json"
-
-    def load(self, name):
-
-        file = self._file(name)
-
-        if not file.exists():
-
-            return []
+    def _load(self):
 
         try:
 
             with open(
-                file,
+                self.MEMORY_FILE,
                 "r",
                 encoding="utf-8"
             ) as f:
@@ -42,14 +39,12 @@ class MemoryManager:
 
         except Exception:
 
-            return []
+            return {}
 
-    def save(self, name, data):
-
-        file = self._file(name)
+    def _save(self, data):
 
         with open(
-            file,
+            self.MEMORY_FILE,
             "w",
             encoding="utf-8"
         ) as f:
@@ -57,26 +52,142 @@ class MemoryManager:
             json.dump(
                 data,
                 f,
-                ensure_ascii=False,
-                indent=4
+                indent=4,
+                ensure_ascii=False
             )
 
-    def add(self, name, item):
+    # -----------------------
+    # Simple Key / Value
+    # -----------------------
 
-        data = self.load(name)
+    def set(self, key, value):
 
-        if item not in data:
+        data = self._load()
 
-            data.append(item)
+        data[key] = {
+            "value": value,
+            "updated": datetime.utcnow().isoformat()
+        }
 
-            self.save(
-                name,
-                data
-            )
+        self._save(data)
 
-    def clear(self, name):
+    def get(self, key, default=None):
 
-        self.save(
-            name,
+        data = self._load()
+
+        if key not in data:
+            return default
+
+        return data[key]["value"]
+
+    def exists(self, key):
+
+        return key in self._load()
+
+    def delete(self, key):
+
+        data = self._load()
+
+        if key in data:
+
+            del data[key]
+
+            self._save(data)
+
+    # -----------------------
+    # Topic History
+    # -----------------------
+
+    def add_topic(self, topic):
+
+        topic = topic.strip()
+
+        data = self._load()
+
+        history = data.get(
+            "topic_history",
+            {
+                "value": [],
+                "updated": ""
+            }
+        )
+
+        topics = history["value"]
+
+        if topic not in topics:
+
+            topics.append(topic)
+
+        topics = topics[-self.MAX_HISTORY:]
+
+        data["topic_history"] = {
+            "value": topics,
+            "updated": datetime.utcnow().isoformat()
+        }
+
+        self._save(data)
+
+    def topic_exists(self, topic):
+
+        topic = topic.strip()
+
+        history = self.get(
+            "topic_history",
             []
         )
+
+        return topic in history
+
+    def recent_topics(self, limit=10):
+
+        history = self.get(
+            "topic_history",
+            []
+        )
+
+        return history[-limit:]
+
+    # -----------------------
+    # Best Workflow
+    # -----------------------
+
+    def save_best_workflow(
+        self,
+        workflow,
+        score
+    ):
+
+        best = self.get(
+            "best_workflow"
+        )
+
+        if (
+            best is None
+            or score > best["score"]
+        ):
+
+            self.set(
+                "best_workflow",
+                {
+                    "score": score,
+                    "workflow": workflow
+                }
+            )
+
+    # -----------------------
+    # Utility
+    # -----------------------
+
+    def clear(self):
+
+        self._save({})
+
+    def keys(self):
+
+        return list(
+            self._load().keys()
+        )
+
+    def all(self):
+
+        return self._load()

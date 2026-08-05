@@ -10,6 +10,9 @@ from cache.cache_manager import CacheManager
 from config.settings import (
     OPENROUTER_API_KEY,
     OPENROUTER_BASE_URL,
+    AI_MAX_RETRIES,
+    AI_MAX_TOKENS,
+    AI_TEMPERATURE,
 )
 
 from config.ai_models import OPENROUTER_MODELS
@@ -25,126 +28,212 @@ class OpenAIClient:
         )
 
         self.cache = CacheManager()
-
     def ask(self, prompt, schema=None):
 
-        logger.info("Starting AI Request")
+        logger.info("=" * 80)
+        logger.info("NEW AI REQUEST")
+        logger.info("=" * 80)
 
         start_time = time.time()
 
         cached = self.cache.load(prompt)
 
-        if cached:
+        if cached is not None:
+
             print("\nUsing Cached Response")
-            logger.info("Using Cached Response")
+            logger.info("Cache Hit")
+
             return cached
 
         errors = []
 
         for model in OPENROUTER_MODELS:
 
-            print(f"\nTrying: {model}")
+            print(f"\nTrying Model: {model}")
+            logger.info(f"Trying Model: {model}")
 
-            try:
+            for attempt in range(
+                1,
+                AI_MAX_RETRIES + 1
+            ):
 
-                response = self.client.chat.completions.create(
+                print(
+                    f"Attempt {attempt}/{AI_MAX_RETRIES}"
+                )
 
-                    model=model,
+                try:
 
-                    temperature=0,
+                    response = self.client.chat.completions.create(
 
-                    max_tokens=3000,
+                        model=model,
 
-                    response_format={
-                        "type": "json_object"
-                    },
+                        temperature=AI_TEMPERATURE,
 
-                    messages=[
-                        {
-                            "role": "system",
-                            "content":
-                            (
-                                "You are a strict JSON API.\n"
-                                "Return ONLY ONE valid JSON object.\n"
-                                "Never use markdown.\n"
-                                "Never explain.\n"
-                                "Never output text before JSON.\n"
-                                "Never output text after JSON.\n"
-                                "Every required key must exist."
-                            )
+                        max_tokens=AI_MAX_TOKENS,
+
+                        response_format={
+                            "type": "json_object"
                         },
-                        {
-                            "role": "user",
-                            "content": prompt
-                        }
-                    ]
-                )
 
-                result = response.choices[0].message.content
+                        messages=[
+                            {
+                                "role": "system",
+                                "content": (
+                                    "You are a strict JSON API.\n"
+                                    "Return ONLY ONE valid JSON object.\n"
+                                    "Never use markdown.\n"
+                                    "Never explain.\n"
+                                    "Never output text before JSON.\n"
+                                    "Never output text after JSON.\n"
+                                    "Every required key must exist."
+                                )
+                            },
+                            {
+                                "role": "user",
+                                "content": prompt
+                            }
+                        ]
+                    )
 
-                if not result:
-                    raise Exception("Empty AI response.")
+                    choice = response.choices[0]
 
-                print("\n" + "=" * 80)
-                print("RAW AI RESPONSE")
-                print("=" * 80)
-                print(result)
-                print("=" * 80)
+                    finish_reason = choice.finish_reason
 
-                logger.info(f"Success: {model}")
-                logger.info(
-                    f"Response Time: {time.time()-start_time:.2f} sec"
-                )
+                    if finish_reason != "stop":
 
-                self.cache.save(
-                    prompt,
-                    result
-                )
+                        raise Exception(
+                            f"Incomplete AI response (finish_reason={finish_reason})"
+                        )
 
-                return result
+                    result = choice.message.content
 
-            except RateLimitError:
+                    if result is None:
 
-                print(f"Rate Limited: {model}")
-                logger.warning(f"Rate Limited: {model}")
+                        raise Exception(
+                            "Empty AI response."
+                        )
 
-                errors.append(f"{model} -> Rate Limit")
+                    result = str(result).strip()
 
-                continue
+                    if result == "":
 
-            except APIError as e:
+                        raise Exception(
+                            "Blank AI response."
+                        )
 
-                msg = str(e)
+                    print("\n" + "=" * 80)
+                    print("RAW AI RESPONSE")
+                    print("=" * 80)
+                    print(result)
+                    print("=" * 80)
 
-                # Skip dead or unavailable models automatically
-                if (
-                    "404" in msg
-                    or "No endpoints found" in msg
-                    or "model not found" in msg.lower()
-                ):
+                    logger.info(
+                        f"Success: {model}"
+                    )
 
-                    print(f"Skipping unavailable model: {model}")
-                    logger.warning(f"Skipping {model}")
+                    logger.info(
+                        f"Response Time: {time.time() - start_time:.2f} sec"
+                    )
 
-                    continue
+                    self.cache.save(
+                        prompt,
+                        result
+                    )
 
-                print(f"API Error: {model}")
-                logger.error(msg)
+                    return result
+                except RateLimitError as e:
 
-                errors.append(f"{model} -> {msg}")
+                    logger.warning(
+                        f"Rate Limited: {model}"
+                    )
 
-                continue
+                    print(
+                        f"Rate Limited: {model}"
+                    )
 
-            except Exception as e:
+                    errors.append(
+                        f"{model} -> Rate Limit -> {e}"
+                    )
 
-                print(f"Failed: {model}")
-                logger.exception(e)
+                    if attempt < AI_MAX_RETRIES:
 
-                errors.append(f"{model} -> {e}")
+                        time.sleep(2)
 
-                continue
+                        continue
+
+                    break
+
+                except APIError as e:
+
+                    msg = str(e)
+
+                    logger.error(msg)
+
+                    print(msg)
+
+                    errors.append(
+                        f"{model} -> {msg}"
+                    )
+
+                    msg_lower = msg.lower()
+
+                    if (
+                        "404" in msg
+                        or "no endpoints found" in msg_lower
+                        or "model not found" in msg_lower
+                    ):
+
+                        print(
+                            f"Skipping unavailable model: {model}"
+                        )
+
+                        break
+
+                    if (
+                        "401" in msg
+                        or "authentication_error" in msg_lower
+                        or "invalid api key" in msg_lower
+                    ):
+
+                        print(
+                            f"Authentication failed: {model}"
+                        )
+
+                        break
+
+                    if attempt < AI_MAX_RETRIES:
+
+                        time.sleep(2)
+
+                        continue
+
+                    break
+
+                except Exception as e:
+
+                    logger.exception(e)
+
+                    print(
+                        f"Failed: {model}"
+                    )
+
+                    errors.append(
+                        f"{model} -> {e}"
+                    )
+
+                    if attempt < AI_MAX_RETRIES:
+
+                        time.sleep(2)
+
+                        continue
+
+                    break
+
+        logger.error(
+            "All AI models failed."
+        )
 
         raise Exception(
             "\nNo working AI model found.\n\n"
             + "\n".join(errors)
-        )
+        )    

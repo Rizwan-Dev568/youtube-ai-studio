@@ -1,0 +1,314 @@
+{
+    "topic": {
+        "value": "AI Agents",
+        "updated": "2026-08-05T06:23:59.756051"
+    },
+    "topic_history": {
+        "value": [
+            "ai agent"
+        ],
+        "updated": "2026-08-05T07:14:16.289183"
+    },
+    "last_topic": {
+        "value": "ai agent",
+        "updated": "2026-08-05T07:14:16.298484"
+    },
+    "research": {
+        "value": {
+            "topic": "ai agent",
+            "summary": {
+                "opportunity": "High",
+                "average_score": 1417.1,
+                "average_views": 600607,
+                "newest_video_days": 0,
+                "videos_analyzed": 10
+            },
+            "top_videos": [
+                {
+                    "title": "AI Agents, Clearly Explained",
+                    "video_id": "FwOTs4UxQS4",
+                    "video_url": "https://www.youtube.com/watch?v=FwOTs4UxQS4",
+                    "channel": "Jeff Su",
+                    "channel_id": "UCwAnu01qlnVg1Ai2AbtTMaA",
+                    "published_at": "2025-04-08T13:00:28Z",
+                    "thumbnail": "https://i.ytimg.com/vi/FwOTs4UxQS4/hqdefault.jpg",
+                    "description": "My AI Toolkit: https://academy.jeffsu.org/ai-toolkit?utm_source=youtube&utm_medium=video&utm_campaign=177\n\nUnderstanding AI Agents doesn't require a technical background. This video breaks down the evolution from basic LLMs like #ChatGPT to AI Workflows and finally to true #AI Agents through practical, real-world examples.\n\nLearn the key differences between these technologies and discover how concepts like RAG and ReAct actually work in simple terms. Perfect for regular AI users who want to understand how these emerging technologies will impact their daily lives.\n\n*TIMESTAMPS*\n00:00 AI vs. AI Agents\n01:04 Level 1: LLMs\n02:17 Level 2: AI Workflows\n05:26 Level 3: AI Agents\n07:48 Real-world Example\n09:10 Summary\n\n*RESOURCES MENTIONED*\nHelena Liu's AI Workflow Tutorial: https://youtu.be/H0YRniHh2tg\nAndrew Ng's AI Agent Demo: https://youtu.be/KrRD7r7y7NY\n\n*BE MY FRIEND:*\n📧 Subscribe to my newsletter - https://www.jeffsu.org/newsletter/?utm_source=youtube&utm_medium=video&utm_campaign=description\n📸 Instagram - https://instagram.com/j.sushie\n🤝 LinkedIn - https://www.linkedin.com/in/jsu05/\n\n*MY FAVORITE GEAR*\n🎬 My YouTube Gear - https://www.jeffsu.org/yt-gear/\n🎒 Everyday Carry - https://www.jeffsu.org/my-edc/\n\n*MY TOP 3 FAVORITE SOFTWARE*\n❎ CleanShot X - https://geni.us/cleanshotx\n✍️ Skillshare - https://geni.us/skillshare-jeff\n💼 Teal - http://tealhq.co/jeffsu\n\n#aiagents",
+                    "views": 4682731,
+                    "likes": 110863,
+                    "comments": 2925,
+                    "duration": "PT10M9S",
+                    "days_old": 483,
+                    "score": 10810.88
+                },
+                {
+                    "title": "Create Your FIRST AI Agent Today !",
+                    "video_id": "9LcouXH_O6g",
+                    "video_url": "https://www.youtube.com/watch?v=9LcouXH_O6g",
+                    "channel": "AI Learners India",
+                    "channel_id": "UCjECA8ZHP52yFjKyRW4-8Hw",
+                    "published_at": "2025-03-25T16:36:36Z",
+                    "thumbnail": "https://i.ytimg.com/vi/9LcouXH_O6g/hqdefault.jpg",
+                    "description": "This video will be all about creating your first AI Agent with N8n. \n\nartificial intelligence, AI tutorial, machine learning, deep learning, python programming, AI course, Indian AI developer, tech education, coding tutorial, AI projects, data science, neural networks, computer vision, NLP, AI career, technology india, AI learners india, AI education, machine learning tutorial, python AI\n\n#AILearners #ArtificialIntelligence #MachineLearning #DeepLearning #TechTutorial #IndianTech #LearnAI #PythonProgramming #DataScience #AIEducation\n\n❓ Got questions? Drop them in the comments below!\n👍 If you found this video helpful, please give it a thumbs up\n🔔 Subscribe and hit the notification bell to never miss an upload\n💡 Share your video suggestions in the comments\n\nDISCLAIMER:\nThis video is created for educational purposes. All code and resources shared are for learning. Please respect licenses and terms of use when implementing in your projects.\n\n\"What You'll Learn on AI Learners India\"\nI'm here to guide you through the transformative world of artificial intelligence, focusing on practical applications that enhance your daily life and work. My channel breaks down complex AI concepts into simple, actionable insights that anyone can understand and implement, regardless of technical background.\nOn this channel, you'll master the art of content creation using cutting-edge AI tools. I'll show you how to generate engaging written content, create stunning visuals, produce professional videos, and develop impressive presentations – all with the power of AI. You'll learn to leverage tools like ChatGPT, Midjourney, and various AI platforms to enhance your creative process and produce high-quality content efficiently.\nBusiness professionals will discover how to revolutionize their workflow through AI automation. From streamlining administrative tasks to implementing smart customer service solutions, you'll learn to create efficient systems that save hours of manual work. I'll guide you through setting up AI-powered project management tools and automating routine business processes.\nFor personal productivity enthusiasts, I'll demonstrate how to use AI as your personal assistant. You'll master email management, schedule optimization, and task prioritization using AI tools. Learn to automate document analysis, meeting transcription, and note-taking to reclaim valuable time in your day.\nDigital marketers will benefit from comprehensive tutorials on AI-powered marketing strategies. I'll show you how to create targeted campaigns, generate SEO-optimized content, and analyze marketing performance using the latest AI tools. You'll learn to develop engaging social media content and design eye-catching marketing materials with AI assistance.\nCreatives will unlock new possibilities through AI-enhanced projects. Whether you're interested in story development, art creation, music composition, or video production, I'll show you how to enhance your creative process with AI tools while maintaining your unique artistic vision.\nMy channel also keeps you updated on the latest AI trends, focusing on practical applications and real-world impact. You'll learn about new tools, emerging applications, and industry-specific use cases, with particular attention to developments in the Indian tech ecosystem.\nImportantly, I emphasize ethical AI usage throughout all tutorials. You'll learn about responsible AI deployment, copyright considerations, and maintaining the crucial balance between AI assistance and human creativity.\nJoin me on this journey to master AI technology in a practical, accessible way. Whether you're a content creator, business professional, student, or simply curious about AI, I'll help you harness these powerful tools to enhance your work and creativity. My focus is on delivering clear, actionable knowledge that you can apply immediately to achieve tangible results.\nEvery tutorial is crafted with real-world applications in mind, supported by practical examples and case studies. I ensure each concept is explained thoroughly, helping you build confidence in using AI tools effectively. Subscribe to begin your journey into the fascinating world of practical AI applications and join our growing community of AI enthusiasts.",
+                    "views": 1099411,
+                    "likes": 31381,
+                    "comments": 1025,
+                    "duration": "PT23M28S",
+                    "days_old": 497,
+                    "score": 2873.46
+                },
+                {
+                    "title": "Build Your First AI Agent In 13 Minutes (No Coding, Full Tutorial)",
+                    "video_id": "4LwtuscILlc",
+                    "video_url": "https://www.youtube.com/watch?v=4LwtuscILlc",
+                    "channel": "Vaibhav Sisinty",
+                    "channel_id": "UClXAalunTPaX1YV185DWUeg",
+                    "published_at": "2026-08-02T06:46:37Z",
+                    "thumbnail": "https://i.ytimg.com/vi/4LwtuscILlc/hqdefault.jpg",
+                    "description": "👉 GET $500 IN FREE CREDITS (first 500 people only): \nhttps://www.hyperagent.com/vaibhav\n\n👉 GRAB EVERY PROMPT AND BUILD ALONG (FREE):\nhttps://links.stayingahead.com/YT67\n\n━━━━━━━━━━━━━━━━━━━━━━\n\nMillions of AI agents are already working right now — and almost nobody outside \nof tech knows how to build one. In this video you'll build 3 no code AI agents \nin 15 minutes, including one that builds and manages an entire army of AI agents \nfor you. Zero coding. Nothing to install. Total cost: under $10.\n\nEveryone learned ChatGPT and Claude. Almost nobody learned what came after it.\n\nHere's the difference. Today you open a tab, ask a question, get an answer, close \nit and tomorrow you start from zero. An AI agent doesn't work like that. You \nbuild it once, it remembers you, and it keeps working long after you've shut the \nlaptop.\n\nThis is a complete no code AI agent tutorial for beginners. No developer \nbackground needed, no terminal, no API keys pasted from a doc you don't \nunderstand. Everything runs in your browser, on whatever laptop you already own.\n\nWHAT YOU'RE BUILDING:\n\nLevel 1 — Your first AI agent. The simplest working version there is.\nLevel 2 — An AI agent that builds and manages an army of other AI agents, \nrunning multiple jobs at the same time.\nLevel 3 — A fully autonomous agent that runs on its own every morning and has \na report waiting for you before you wake up.\n\nWe're using Hyperagent, built by the founder of Airtable. A normal AI forgets \neverything about you the second you close the tab. This one remembers your whole \nsetup and keeps working on its own — less like a chatbot you re-explain yourself \nto every time, more like an employee you hire once.\n\nPeople are already selling agent builds like these for a couple thousand dollars. \nThis one cost under ten dollars to make. That's what a one person business looks \nlike in 2026.\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n⏱ TIMESTAMPS\n0:00 Everyone learned ChatGPT. Nobody learned this\n0:40 The real question: how AI makes money\n1:04 The tool that makes this possible\n1:21 Free credits + all prompts\n1:38 BUILD 1: The offer that brings money in\n2:29 Building the wedding decor agent\n3:38 One photo, three decorated venues\n4:12 Saving it as a reusable agent\n4:44 The pricing page that sells itself\n5:16 What it actually cost: $11\n5:39 BUILD 2: The agent that builds a whole company\n6:53 Setting up the startup team\n7:37 How it saves money mid-task\n7:54 The research report\n8:19 The builder and the brand\n9:03 Finding 7 real customers, live\n9:22 Turning it into reusable skills\n9:42 Plugging into Gmail, Slack, GitHub\n9:58 BUILD 3: The agent that runs it all\n10:20 Setting up your always-on analyst\n11:52 The agent that grades itself\n12:12 Your daily report, built automatically\n12:45 The whole one person business\n13:01 Claim your credits\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n❓ QUESTIONS PEOPLE ASK\n\nDo I need to know coding to build an AI agent?\nNo. Every build in this video is no code. Nothing gets installed and nothing runs \nlocally.\n\nWhat is an AI agent, in simple terms?\nA normal AI answers one question and forgets you. An agent is set up once, keeps \nyour context, and keeps working on its own without being prompted again.\n\nIs Hyperagent free?\nNo, it's a paid tool. The first 500 people through the link get $500 in credits, \nwhich covers everything built in this video.\n\nCan I sell AI agents I build?\nPeople are charging a couple thousand dollars for builds like these. The video \nshows exactly what goes into one.\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n#AIAgents #NoCodeAI #AIAutomation #AITutorial #Hyperagent\n\n--------\n\nTo Know More,\nFollow Vaibhav Sisinty On ⤵︎\n\nInstagram @VaibhavSisinty\nhttps://www.instagram.com/vaibhavsisinty\n\nTwitter @VaibhavSisinty\nhttps://twitter.com/VaibhavSisinty\n\nFacebook @VaibhavSisinty\nhttps://www.facebook.com/vaibhavsisinty/\n\nLinkedIn - Vaibhav Sisinty\nhttps://www.linkedin.com/in/vaibhavsisinty",
+                    "views": 71247,
+                    "likes": 2432,
+                    "comments": 103,
+                    "duration": "PT13M31S",
+                    "days_old": 3,
+                    "score": 213.45
+                },
+                {
+                    "title": "How to Build & Sell AI Agents | How To Make Money With AI Agents | Saqib Azhar",
+                    "video_id": "zqP4X9uso5c",
+                    "video_url": "https://www.youtube.com/watch?v=zqP4X9uso5c",
+                    "channel": "Enablers",
+                    "channel_id": "UCmKr9PW2edzkzMpbju_9Jzw",
+                    "published_at": "2026-03-27T16:16:01Z",
+                    "thumbnail": "https://i.ytimg.com/vi/zqP4X9uso5c/hqdefault.jpg",
+                    "description": "Learn Step by Step from here:\nhttp://www.enablers.org/arti\n\nWant to learn how to build AI agents and turn them into a profitable business in 2026?\n\nIn this video, I’ll show you step-by-step how to create, deploy, and sell AI agents even if you’re starting from zero. AI is no longer the future — it’s the present, and those who adopt early will dominate the digital economy.\n\nYou’ll learn:\n\nWhat AI agents are and how they work\nHow to build AI agents without heavy coding\nBest platforms and tools to get started\nHow to sell AI agents locally & internationally\nReal business models to make money with AI\nHow freelancers & entrepreneurs can scale using AI\n\nWhether you’re a student, freelancer, or business owner, this is one of the biggest online opportunities of 2026.\n\n If you want to build a global income stream using AI, this video is for you.\n\n#AIAgents\n#MakeMoneyWithAI\n#AIBusiness\n#SaqibAzhar\n#ArtificialIntelligence\n#OnlineBusiness2026\n#EarnMoneyOnline\n#FreelancingPakistan\n#DigitalSkills\n#AIForBeginners\n#AIAutomation\n#PassiveIncomeIdeas\n#TechBusiness\n#FutureOfWork\n#AIEntrepreneur\n#ChatGPTBusiness\n#NoCodeAI\n#SideHustle2026\n#OnlineEarningPakistan\n#EcommercePakistan\n\nEnablers Group of Companies, a dynamic conglomerate dedicated to empowering individuals and organizations through a diverse range of ventures. Whether you are seeking to embark on a transformative learning journey, unleash your entrepreneurial potential, or leverage the latest advancements in education & technology, Enablers Group of Companies is your trusted partner in realizing your goals and unlocking your full potential.\n\n--------------------------------\nLearn Free from eCommerce by Enablers: \nhttps://www.enablers.org/group\n--------------------------------\nEnablers Upcoming Programs:\n\nhttps://www.enablers.org/trainings\nhttp://www.ecot.edu.pk/programs \n--------------------------------\nEnablers Preferred Supplier List for Services:\nhttp://www.enablers.org/services\n---------------------------------\nAsk Saqib Azhar Publicly:\nhttp://www.saqibazhar.net\n\nTo Book 1-1 Call with Saqib Azhar:\nhttp://www.enablers.org/saqibazhar \n\n--------------------------------\nFollow Enablers On Social Media :\n---------------------------------\nEnablers Official Pages: \n-------------------------------\nhttps://www.facebook.com/EnablersTeam \nhttps://www.facebook.com/SchoolofEnablers\nhttps://www.facebook.com/EnablersCollege\nhttps://www.instagram.com/enablers.official/\nhttps://twitter.com/enablers_org\n\nSaqib Azhar Official Pages:\n-------------------------------\nhttps://www.facebook.com/SaqibAzharPage \nhttps://www.instagram.com/saqib.enablers\nhttps://twitter.com/saqibazhar\nhttps://www.facebook.com/saqib.azhar/",
+                    "views": 42578,
+                    "likes": 1001,
+                    "comments": 101,
+                    "duration": "PT3M49S",
+                    "days_old": 130,
+                    "score": 112.83
+                },
+                {
+                    "title": "How I Built an AI Agent in 14 minutes as A Beginner (2026)",
+                    "video_id": "UyoVmQLekBc",
+                    "video_url": "https://www.youtube.com/watch?v=UyoVmQLekBc",
+                    "channel": "Mikey No Code",
+                    "channel_id": "UCde0vB0fTwC8AT3sJofFV0w",
+                    "published_at": "2026-07-27T14:15:15Z",
+                    "thumbnail": "https://i.ytimg.com/vi/UyoVmQLekBc/hqdefault.jpg",
+                    "description": "✅ Claim your FREE $499 Masterclass: Build & Sell Apps, AI Agents & Websites with AI https://mikeyno-code.com/Skool-base44\n\n✅ Best AI Agent Tool is Base44 https://mikeyno-code.com/agent13\n\n🔵 Get the FREE App Store Submission Checklist (step by step): https://mikeys-5-min-checklist.netlify.app/\n\nIn this video, I break down how I built an AI agent in 14 minutes as a beginner in 2026, showing a simple and practical workflow anyone can follow. You’ll learn how to build an AI agent step by step, including a beginner-friendly AI agent tutorial and how tools like n8n AI agent setups can be used to automate real tasks. Whether you're new to automation or exploring how modern AI agent systems work, this guide shows you how to get started quickly and build your first working AI agent.\n\n00:00 - Intro: Building a Functional AI Agent in 14 Minutes\n00:58 - Free AI App & Business Masterclass\n01:37 - What is Base44? The No-Code AI Powered App Builder\n02:16 - Getting Started: Dashboard Overview and Prompt Interface\n02:48 - Understanding the Base44 Credit-Based Pricing Model\n03:38 - Project Setup: Building a Full-Stack Task Management App\n04:12 - Core Roadmap: Forms, Databases, and AI Agent Logic\n05:23 - Feature 1: Building the Core Task Creation System\n06:17 - The Exact AI Prompt for App Foundation & List View\n07:16 - How to Build and Scale Profitable AI Businesses\n08:25 - Feature 2: Adding Filters, Sorting, and Kanban Boards\n09:38 - The Exact AI Prompt for App Organization & UI\n10:20 - Feature 3: Adding a Progress Dashboard & Summary Cards\n11:07 - The Exact AI Prompt for Dynamic Data Dashboards\n11:59 - Feature 4: Enabling Secure User Authentication & Private Data\n12:48 - The Exact AI Prompt for No-Code User Login Flows\n13:30 - Feature 5: Integrating a Native AI Chat Assistant\n14:36 - The Exact AI Prompt for Natural Language App Control\n15:30 - Feature 6: Upgrading to a Dynamic Autonomous AI Agent\n16:40 - The Exact AI Prompt for Context-Aware AI Agents\n17:27 - Conclusion: Shifting from Writing Infrastructure to Building Products\n\nFor inquiries: Mikey (at) ytmedia.group",
+                    "views": 39153,
+                    "likes": 0,
+                    "comments": 36,
+                    "duration": "PT18M2S",
+                    "days_old": 8,
+                    "score": 46.35
+                }
+            ]
+        },
+        "updated": "2026-08-05T07:14:17.487610"
+    },
+    "last_response": {
+        "value": {
+            "thumbnail_title": "Build a No‑Code AI Agent in 10 Minutes",
+            "thumbnail_text": [
+                "No Code AI",
+                "Build Fast",
+                "24/7 Agent",
+                "AI Power",
+                "Start Now",
+                "Zero Effort",
+                "Instant Agent",
+                "Earn Money",
+                "Future Tech",
+                "Easy Setup"
+            ],
+            "thumbnail_concept": "Split‑screen: left side shows a laptop screen with a simple drag‑and‑drop interface, right side a glowing robot icon with a clock showing 10:00. Bold, neon text overlays, a bright arrow pointing to the robot, and a countdown timer to emphasize speed. The background is a gradient of electric blue to hot pink, with white accents for contrast.",
+            "emotion": "Excitement",
+            "colors": "Electric blue, hot pink, lime green, bright orange, white",
+            "subject_focus": "No‑code AI agent creation"
+        },
+        "updated": "2026-08-05T07:20:50.835687"
+    },
+    "seo": {
+        "value": {
+            "titles": [
+                "How to Build a No-Code AI Agent in 10 Minutes",
+                "AI Agent Secrets: Automate Tasks Without Coding",
+                "From ChatGPT to AI Agent: The Next Evolution Explained",
+                "Create an AI Agent That Works 24/7 – No Programming Needed",
+                "Step‑by‑Step: Launch Your First AI Agent Today",
+                "Why AI Agents Are the Future of Automation (2026 Guide)",
+                "Build an AI Agent in Minutes – No Technical Skills Required",
+                "Turn Your Ideas Into AI Agents: A Beginner's Blueprint",
+                "AI Agent vs. Chatbot: What You Need to Know",
+                "Unlock Hidden Productivity with AI Agents – Quick Start"
+            ],
+            "description": "In today's fast‑moving tech landscape, AI agents are becoming the backbone of automation, turning simple prompts into autonomous workflows that run 24/7. This video walks you through building a fully functional AI agent in under ten minutes—no coding required—using popular no‑code platforms like Hyperagent, Base44, and n8n. We'll cover the core concepts that differentiate an AI agent from a chatbot, explain how to set up a persistent context, and show you how to integrate real‑world tasks such as email triage, data scraping, and report generation.\n\nYou'll learn:\n• The evolution from ChatGPT to AI agents and why it matters for 2026\n• How to choose the right no‑code tool for your workflow\n• Step‑by‑step instructions to create an agent that remembers your preferences\n• Tips for scaling your agent into a small business or side hustle\n• Best practices for maintaining privacy and security\n\nWhether you're a budding AI developer, a small‑business owner, or a no‑code enthusiast, this guide gives you a clear, actionable path to harness AI agents for real productivity gains. By the end, you'll have a live agent that can handle repetitive tasks, freeing you to focus on higher‑value work.\n\nRemember to hit the bell icon for more AI tutorials, and drop a comment if you'd like to see a specific use‑case covered next!",
+            "tags": [
+                "AI Agent",
+                "No Code AI",
+                "AI Automation",
+                "ChatGPT",
+                "AI Workflow",
+                "Hyperagent",
+                "Base44",
+                "AI Productivity",
+                "AI Business",
+                "AI Tools"
+            ],
+            "keywords": [
+                "AI agent tutorial",
+                "build AI agent no code",
+                "AI automation tools",
+                "ChatGPT vs AI agent",
+                "AI agent for business",
+                "AI agent 2026",
+                "AI agent tutorial 2026",
+                "AI agent workflow",
+                "AI agent example",
+                "AI agent guide"
+            ],
+            "thumbnail_text": [
+                "No Code AI",
+                "Build Fast",
+                "24/7 Agent",
+                "AI Power",
+                "Start Now"
+            ],
+            "viral_score": 68,
+            "competition": "Medium",
+            "best_video_length": "8-10 minutes",
+            "target_audience": "Aspiring AI developers, no‑code enthusiasts, entrepreneurs, and small business owners"
+        },
+        "updated": "2026-08-05T07:16:05.877705"
+    },
+    "title_rank": {
+        "value": {
+            "winner": "How to Build a No-Code AI Agent in 10 Minutes",
+            "reason": "Title 1 delivers the highest combined CTR, SEO, and curiosity scores, offering a clear, actionable promise with a specific time frame and no-code emphasis, making it most likely to attract clicks, search traffic, and remain advertiser-friendly.",
+            "rankings": [
+                {
+                    "title": "How to Build a No-Code AI Agent in 10 Minutes",
+                    "CTR Score": 88,
+                    "SEO Score": 90,
+                    "Curiosity Score": 72,
+                    "Strengths": "High click‑through potential due to actionable, time‑limited promise; strong SEO with key terms; clear and concise; advertiser‑friendly.",
+                    "Weaknesses": "Slightly long but still within acceptable limits; may be perceived as too specific by some viewers."
+                },
+                {
+                    "title": "Build an AI Agent in Minutes – No Technical Skills Required",
+                    "CTR Score": 86,
+                    "SEO Score": 88,
+                    "Curiosity Score": 70,
+                    "Strengths": "Strong SEO with no‑technical‑skills hook; clear promise of speed; good advertiser friendliness.",
+                    "Weaknesses": "Less specific time frame than Title 1; slightly lower curiosity."
+                },
+                {
+                    "title": "AI Agent Secrets: Automate Tasks Without Coding",
+                    "CTR Score": 82,
+                    "SEO Score": 84,
+                    "Curiosity Score": 78,
+                    "Strengths": "High curiosity from \"Secrets\"; solid SEO; clear benefit of automation.",
+                    "Weaknesses": "\"Secrets\" can feel clickbait; slightly lower clarity on exact outcome."
+                },
+                {
+                    "title": "AI Agent vs. Chatbot: What You Need to Know",
+                    "CTR Score": 78,
+                    "SEO Score": 82,
+                    "Curiosity Score": 80,
+                    "Strengths": "Strong curiosity from comparison; clear intent; good SEO for comparison queries.",
+                    "Weaknesses": "Less actionable; may not drive immediate clicks for tutorials."
+                },
+                {
+                    "title": "From ChatGPT to AI Agent: The Next Evolution Explained",
+                    "CTR Score": 74,
+                    "SEO Score": 78,
+                    "Curiosity Score": 82,
+                    "Strengths": "High curiosity with evolution angle; good SEO for ChatGPT; clear explanation promise.",
+                    "Weaknesses": "Less actionable; longer title may reduce click‑through."
+                },
+                {
+                    "title": "Create an AI Agent That Works 24/7 – No Programming Needed",
+                    "CTR Score": 76,
+                    "SEO Score": 80,
+                    "Curiosity Score": 72,
+                    "Strengths": "Clear benefit of always‑on; strong SEO; advertiser friendly.",
+                    "Weaknesses": "Longer title; moderate curiosity."
+                },
+                {
+                    "title": "Unlock Hidden Productivity with AI Agents – Quick Start",
+                    "CTR Score": 74,
+                    "SEO Score": 78,
+                    "Curiosity Score": 70,
+                    "Strengths": "Clear productivity benefit; good SEO; quick start hook.",
+                    "Weaknesses": "Less specific; moderate curiosity."
+                },
+                {
+                    "title": "Turn Your Ideas Into AI Agents: A Beginner's Blueprint",
+                    "CTR Score": 72,
+                    "SEO Score": 78,
+                    "Curiosity Score": 66,
+                    "Strengths": "Clear beginner focus; good SEO; blueprint promise.",
+                    "Weaknesses": "Lower curiosity; slightly longer title."
+                },
+                {
+                    "title": "Step-by-Step: Launch Your First AI Agent Today",
+                    "CTR Score": 70,
+                    "SEO Score": 75,
+                    "Curiosity Score": 68,
+                    "Strengths": "Clear step‑by‑step promise; moderate SEO; good clarity.",
+                    "Weaknesses": "Lower curiosity; less keyword density."
+                },
+                {
+                    "title": "Why AI Agents Are the Future of Automation (2026 Guide)",
+                    "CTR Score": 68,
+                    "SEO Score": 72,
+                    "Curiosity Score": 70,
+                    "Strengths": "Future‑oriented angle; good SEO for 2026 queries; clear intent.",
+                    "Weaknesses": "Less actionable; lower curiosity."
+                }
+            ]
+        },
+        "updated": "2026-08-05T07:19:47.762788"
+    },
+    "hooks": {
+        "value": {
+            "hooks": [
+                "Ever wondered how to build a 24/7 AI agent without coding? Watch this!",
+                "What if your AI could remember you forever? Learn how to create a persistent agent.",
+                "Stop using chatbots—upgrade to AI agents that automate tasks 24/7.",
+                "In under ten minutes, you can launch a no‑code AI agent that works for you.",
+                "Turn your ideas into autonomous workflows—no programming required.",
+                "Why every entrepreneur needs an AI agent in 2026—discover the secret.",
+                "Build an AI agent that never forgets your preferences—step‑by‑step guide.",
+                "From ChatGPT to AI agent: the evolution that will change your productivity.",
+                "Create a side‑hustle with a no‑code AI agent—no tech skills needed.",
+                "Unlock hidden productivity: build a 24/7 AI agent that handles emails, data, and more."
+            ]
+        },
+        "updated": "2026-08-05T07:20:28.981763"
+    },
+    "thumbnail": {
+        "value": {
+            "thumbnail_title": "Build a No‑Code AI Agent in 10 Minutes",
+            "thumbnail_text": [
+                "No Code AI",
+                "Build Fast",
+                "24/7 Agent",
+                "AI Power",
+                "Start Now",
+                "Zero Effort",
+                "Instant Agent",
+                "Earn Money",
+                "Future Tech",
+                "Easy Setup"
+            ],
+            "thumbnail_concept": "Split‑screen: left side shows a laptop screen with a simple drag‑and‑drop interface, right side a glowing robot icon with a clock showing 10:00. Bold, neon text overlays, a bright arrow pointing to the robot, and a countdown timer to emphasize speed. The background is a gradient of electric blue to hot pink, with white accents for contrast.",
+            "emotion": "Excitement",
+            "colors": "Electric blue, hot pink, lime green, bright orange, white",
+            "subject_focus": "No‑code AI agent creation"
+        },
+        "updated": "2026-08-05T07:20:50.854174"
+    }
+}
