@@ -38,3 +38,8 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+# Runtime memory
+memory/memory_store.json
+
+# Model cache
+config/model_cache.json
