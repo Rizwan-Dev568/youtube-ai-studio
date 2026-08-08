@@ -61,7 +61,8 @@ class BaseAgent:
         prompt,
         schema=None,
         quality_validator=None,
-        quality_type=None
+        quality_type=None,
+        quality_callback=None
     ):
 
         if schema is None:
@@ -147,6 +148,19 @@ class BaseAgent:
                                 "videos",
                                 []
                             )
+                        )
+
+                    elif quality_type == "voice":
+
+                        if quality_callback is None:
+
+                            raise Exception(
+                                "Voice quality callback "
+                                "is required."
+                            )
+
+                        quality_callback(
+                            data
                         )
 
                     else:

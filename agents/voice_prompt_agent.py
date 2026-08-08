@@ -2,7 +2,8 @@
 Voice Prompt Agent
 
 Generates professional AI voice prompts
-with strict output validation.
+with strict output validation and
+automatic quality retry support.
 """
 
 import json
@@ -61,12 +62,17 @@ class VoicePromptAgent(BaseAgent):
 
         result = self.ask(
             prompt,
-            schema=self.schema
+            schema=self.schema,
+            quality_validator=self,
+            quality_type="voice",
+            quality_callback=self._validate_voice_output
         )
 
-        return self._validate_voice_output(
-            result
+        print(
+            "\n✓ Voice Prompt Quality Passed"
         )
+
+        return result
 
     def _validate_voice_output(
         self,
@@ -108,7 +114,8 @@ class VoicePromptAgent(BaseAgent):
                 str
             ):
                 raise Exception(
-                    f"Voice field '{field}' must be a string."
+                    f"Voice field '{field}' "
+                    f"must be a string."
                 )
 
             voice[field] = value.strip()
@@ -116,7 +123,8 @@ class VoicePromptAgent(BaseAgent):
             if not voice[field]:
 
                 raise Exception(
-                    f"Voice field '{field}' cannot be empty."
+                    f"Voice field '{field}' "
+                    f"cannot be empty."
                 )
 
         self._check_garbage(
@@ -147,7 +155,8 @@ class VoicePromptAgent(BaseAgent):
             if pattern in lowered:
 
                 raise Exception(
-                    "Invalid or corrupted voice prompt detected: "
+                    "Invalid or corrupted voice "
+                    "prompt detected: "
                     f"{pattern}"
                 )
 
