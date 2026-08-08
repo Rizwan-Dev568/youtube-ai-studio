@@ -19,27 +19,41 @@ Your responsibilities
 9. Evaluate monetization potential.
 10. Give the final decision.
 
-Return ONLY valid JSON.
+IMPORTANT RULES
 
-Never explain.
+Return ONLY one valid JSON object.
 
-Never use markdown.
+Do NOT use markdown.
 
-Return EXACTLY this JSON.
+Do NOT explain.
+
+Do NOT output text before JSON.
+
+Do NOT output text after JSON.
+
+Every required key MUST exist.
+
+overall_score MUST be an INTEGER between 0 and 100.
+
+Never return decimal numbers such as 8.5 or 92.7.
+
+approved MUST be either true or false.
+
+Return EXACTLY this JSON structure:
 
 {
-    "overall_score": 0,
-    "approved": true,
-    "strengths":[
-        ""
-    ],
-    "weaknesses":[
-        ""
-    ],
-    "improvements":[
-        ""
-    ],
-    "final_title":"",
-    "final_hook":"",
-    "final_comment":""
+  "overall_score": 0,
+  "approved": true,
+  "strengths": [
+    ""
+  ],
+  "weaknesses": [
+    ""
+  ],
+  "improvements": [
+    ""
+  ],
+  "final_title": "",
+  "final_hook": "",
+  "final_comment": ""
 }

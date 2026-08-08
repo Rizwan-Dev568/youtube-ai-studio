@@ -1,4 +1,3 @@
-```python
 import json
 
 
@@ -11,4 +10,4 @@ class JSONValidator:
             return json.loads(text)
 
         except Exception:
-            return None 
+            return None

@@ -16,7 +16,7 @@ from config.settings import (
 )
 
 from config.ai_models import OPENROUTER_MODELS
-
+from config.model_manager import ModelManager
 
 class OpenAIClient:
 
@@ -28,6 +28,8 @@ class OpenAIClient:
         )
 
         self.cache = CacheManager()
+
+        self.model_manager = ModelManager()
     def ask(self, prompt, schema=None):
 
         logger.info("=" * 80)
@@ -47,7 +49,7 @@ class OpenAIClient:
 
         errors = []
 
-        for model in OPENROUTER_MODELS:
+        for model in self.model_manager.get_models():
 
             print(f"\nTrying Model: {model}")
             logger.info(f"Trying Model: {model}")
@@ -95,7 +97,37 @@ class OpenAIClient:
                         ]
                     )
 
+                    if response is None:
+
+                        raise Exception(
+                            "OpenAI returned None."
+                        )
+
+                    if response.choices is None:
+
+                        raise Exception(
+                            "OpenAI returned no choices."
+                        )
+
+                    if len(response.choices) == 0:
+
+                        raise Exception(
+                            "OpenAI returned an empty choices list."
+                        )
+
                     choice = response.choices[0]
+
+                    if choice is None:
+
+                        raise Exception(
+                            "First choice is None."
+                        )
+
+                    if choice.message is None:
+
+                        raise Exception(
+                            "Choice message is None."
+                        )
 
                     finish_reason = choice.finish_reason
 
@@ -105,12 +137,40 @@ class OpenAIClient:
                             f"Incomplete AI response (finish_reason={finish_reason})"
                         )
 
-                    result = choice.message.content
+                    if not hasattr(
+                        choice,
+                        "message"
+                    ):
+
+                        raise Exception(
+                            "Choice has no message attribute."
+                        )
+
+                    result = getattr(
+                        choice.message,
+                        "content",
+                        None
+                    )
 
                     if result is None:
 
                         raise Exception(
-                            "Empty AI response."
+                            "Message content is None."
+                        )
+
+                    if not isinstance(
+                        result,
+                        str
+                    ):
+
+                        result = str(result)
+
+                    result = result.strip()
+
+                    if result == "":
+
+                        raise Exception(
+                            "Blank AI response."
                         )
 
                     result = str(result).strip()
@@ -129,11 +189,13 @@ class OpenAIClient:
 
                     logger.info(
                         f"Success: {model}"
-                    )
+                    )               
 
                     logger.info(
                         f"Response Time: {time.time() - start_time:.2f} sec"
                     )
+
+                    self.model_manager.save()
 
                     self.cache.save(
                         prompt,
@@ -185,6 +247,14 @@ class OpenAIClient:
 
                         print(
                             f"Skipping unavailable model: {model}"
+                        )
+
+                        logger.warning(
+                            f"Removing unavailable model: {model}"
+                        )
+
+                        self.model_manager.remove_model(
+                            model
                         )
 
                         break

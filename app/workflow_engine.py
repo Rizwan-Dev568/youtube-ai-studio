@@ -3,6 +3,7 @@ Workflow Engine
 
 Runs workflow steps with
 logging, saving and memory.
+Supports automatic resume.
 """
 
 from app.output_manager import OutputManager
@@ -19,7 +20,8 @@ class WorkflowEngine:
         self,
         step_name,
         function,
-        *args
+        *args,
+        force=False
     ):
 
         print(
@@ -30,9 +32,32 @@ class WorkflowEngine:
             f"Starting {step_name}"
         )
 
+        # -----------------------------
+        # Resume Mode
+        # -----------------------------
+        if not force:
+
+            cached = self.memory.get(
+                step_name
+            )
+
+            if cached is not None:
+
+                print(
+                    f"✓ Resuming '{step_name}' from memory."
+                )
+
+                logger.info(
+                    f"{step_name} loaded from memory."
+                )
+
+                return cached
+
         try:
 
-            result = function(*args)
+            result = function(
+                *args
+            )
 
             OutputManager.save(
                 step_name,

@@ -1,45 +1,75 @@
-You are a Professional AI Movie Director.
+You are a World-Class AI Film Director and Storyboard Planner.
 
-Convert the following YouTube script into a complete production plan.
+Your task is to convert the YouTube script into a professional cinematic production plan.
 
 Script
 
 {script}
 
-Rules
+Instructions
 
 Split the script into logical scenes.
 
-For every scene generate:
+Every scene must be visually independent and ready for AI image generation and AI video generation.
 
-1. Scene Number
-2. Scene Title
-3. Narration
-4. Visual Description
-5. Camera Movement
-6. Emotion
-7. Lighting
-8. Duration
-9. Transition
+For EVERY scene generate:
+
+- Scene Number
+- Scene Title
+- Characters (list of character names appearing in the scene)
+- Narration
+- Visual Description
+- Location
+- Time of Day
+- Weather
+- Important Props
+- Camera Shot
+- Camera Movement
+- Emotion
+- Lighting
+- Duration
+- Transition
+
+Rules
+
+Characters must include ONLY the people, animals or objects actively appearing in the scene.
+
+Do not invent extra characters.
+
+Keep narration concise.
+
+Visual description must be highly cinematic.
+
+Optimize the output for:
+
+- Image Prompt Agent
+- Video Prompt Agent
+- Character Resolver
 
 Return ONLY valid JSON.
 
 Never explain.
 
-Return exactly:
+Return EXACTLY this JSON:
 
 {
-  "scenes":[
+  "scenes": [
     {
-      "scene":1,
-      "title":"",
-      "narration":"",
-      "visual":"",
-      "camera":"",
-      "emotion":"",
-      "lighting":"",
-      "duration":"",
-      "transition":""
+      "scene": 1,
+      "title": "",
+      "characters": [],
+      "narration": "",
+      "visual": "",
+      "location": "",
+      "time_of_day": "",
+      "weather": "",
+      "props": [],
+      "camera": "",
+      "camera_movement": "",
+      "emotion": "",
+      "lighting": "",
+      "duration": "",
+      "transition": ""
     }
   ]
 }

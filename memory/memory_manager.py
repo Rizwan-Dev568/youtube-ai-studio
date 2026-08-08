@@ -2,7 +2,7 @@
 Professional Memory Manager
 
 Stores workflow memory, topic history,
-scores, and future AI knowledge.
+scores, and workflow resume state.
 """
 
 import json
@@ -21,9 +21,18 @@ class MemoryManager:
 
     def __init__(self):
 
+        self.MEMORY_FILE.parent.mkdir(
+            parents=True,
+            exist_ok=True
+        )
+
         if not self.MEMORY_FILE.exists():
 
             self._save({})
+
+    # -----------------------
+    # Internal
+    # -----------------------
 
     def _load(self):
 
@@ -39,9 +48,14 @@ class MemoryManager:
 
         except Exception:
 
+            # Corrupted / missing JSON
+            self._save({})
             return {}
 
-    def _save(self, data):
+    def _save(
+        self,
+        data
+    ):
 
         with open(
             self.MEMORY_FILE,
@@ -60,7 +74,11 @@ class MemoryManager:
     # Simple Key / Value
     # -----------------------
 
-    def set(self, key, value):
+    def set(
+        self,
+        key,
+        value
+    ):
 
         data = self._load()
 
@@ -71,20 +89,34 @@ class MemoryManager:
 
         self._save(data)
 
-    def get(self, key, default=None):
+    def get(
+        self,
+        key,
+        default=None
+    ):
 
         data = self._load()
 
         if key not in data:
+
             return default
 
-        return data[key]["value"]
+        return data[key].get(
+            "value",
+            default
+        )
 
-    def exists(self, key):
+    def exists(
+        self,
+        key
+    ):
 
         return key in self._load()
 
-    def delete(self, key):
+    def delete(
+        self,
+        key
+    ):
 
         data = self._load()
 
@@ -98,7 +130,10 @@ class MemoryManager:
     # Topic History
     # -----------------------
 
-    def add_topic(self, topic):
+    def add_topic(
+        self,
+        topic
+    ):
 
         topic = topic.strip()
 
@@ -127,25 +162,58 @@ class MemoryManager:
 
         self._save(data)
 
-    def topic_exists(self, topic):
+    def topic_exists(
+        self,
+        topic
+    ):
 
-        topic = topic.strip()
-
-        history = self.get(
+        return topic.strip() in self.get(
             "topic_history",
             []
         )
 
-        return topic in history
+    def recent_topics(
+        self,
+        limit=10
+    ):
 
-    def recent_topics(self, limit=10):
-
-        history = self.get(
+        return self.get(
             "topic_history",
             []
+        )[-limit:]
+
+    # -----------------------
+    # Workflow Resume
+    # -----------------------
+
+    def save_step(
+        self,
+        step_name,
+        result
+    ):
+
+        self.set(
+            step_name,
+            result
         )
 
-        return history[-limit:]
+    def load_step(
+        self,
+        step_name
+    ):
+
+        return self.get(
+            step_name
+        )
+
+    def clear_step(
+        self,
+        step_name
+    ):
+
+        self.delete(
+            step_name
+        )
 
     # -----------------------
     # Best Workflow

@@ -1,33 +1,41 @@
 """
 Prompt Manager
 
-Loads prompts from text files.
+Loads prompt versions
+for every AI agent.
 """
 
-import os
-
-from config.settings import PROMPTS_FOLDER
+from pathlib import Path
 
 
 class PromptManager:
 
-    @staticmethod
-    def load(filename):
+    PROMPT_DIR = (
+        Path(__file__).parent.parent
+        / "agents"
+        / "prompts"
+    )
 
-        path = os.path.join(
-            PROMPTS_FOLDER,
-            filename
+    def load(
+        self,
+        filename
+    ):
+
+        path = (
+            self.PROMPT_DIR
+            / filename
         )
 
-        if not os.path.exists(path):
+        if not path.exists():
+
             raise FileNotFoundError(
-                f"Prompt not found: {filename}"
+                filename
             )
 
         with open(
             path,
             "r",
             encoding="utf-8"
-        ) as file:
+        ) as f:
 
-            return file.read()
+            return f.read()

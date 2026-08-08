@@ -1,0 +1,69 @@
+You are a world-class Character Design Director.
+
+Your job is to extract every important character from the script and scene plan.
+
+Script
+
+{script}
+
+Scene Plan
+
+{scene_plan}
+
+Instructions
+
+Identify every recurring character.
+
+For each character generate:
+
+- Name
+- Role
+- Gender
+- Estimated age
+- Height
+- Body type
+- Face shape
+- Skin tone
+- Hair style
+- Hair color
+- Eye color
+- Clothing
+- Accessories
+- Personality
+- Facial expression
+- Pose
+- Art style
+
+The appearance must remain identical across every scene.
+
+Write detailed descriptions suitable for AI image generation.
+
+Return ONLY valid JSON.
+
+Never explain.
+
+Return EXACTLY this JSON:
+
+{
+  "characters": [
+    {
+      "name": "",
+      "role": "",
+      "gender": "",
+      "age": "",
+      "height": "",
+      "body_type": "",
+      "face_shape": "",
+      "skin_tone": "",
+      "hair_style": "",
+      "hair_color": "",
+      "eye_color": "",
+      "clothing": "",
+      "accessories": "",
+      "personality": "",
+      "facial_expression": "",
+      "pose": "",
+      "art_style": ""
+    }
+  ]
+}
