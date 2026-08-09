@@ -128,10 +128,53 @@ class ImageGenerationAgent:
                     f"for scene {scene_number}."
                 )
 
+            negative_prompt = (
+                image.get(
+                    "negative_prompt"
+                )
+                or ""
+            )
+
+            style = (
+                image.get(
+                    "style"
+                )
+                or ""
+            )
+
+            aspect_ratio = (
+                image.get(
+                    "aspect_ratio"
+                )
+                or None
+            )
+
+            # --------------------------------------
+            # Build final generation prompt
+            # --------------------------------------
+
+            final_prompt = prompt
+
+            if style:
+
+                final_prompt = (
+                    f"{final_prompt}\n\n"
+                    f"Visual style: {style}"
+                )
+
+            if negative_prompt:
+
+                final_prompt = (
+                    f"{final_prompt}\n\n"
+                    f"Negative prompt: "
+                    f"{negative_prompt}"
+                )
+
             asset = (
                 self.service.generate_scene(
                     scene_number=scene_number,
-                    prompt=prompt
+                    prompt=final_prompt,
+                    aspect_ratio=aspect_ratio
                 )
             )
 

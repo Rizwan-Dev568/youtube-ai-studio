@@ -61,6 +61,8 @@ class ManagerAgent:
         print("\nStarting Workflow...")
         logger.info("Workflow Started")
 
+        self.workflow.set_topic(topic)
+
         if self.memory.topic_exists(topic):
 
             print(

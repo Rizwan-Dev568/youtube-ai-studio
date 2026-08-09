@@ -3,8 +3,12 @@ Workflow Engine
 
 Runs workflow steps with
 logging, saving and memory.
-Supports automatic resume.
+
+Supports automatic resume with
+topic-aware workflow memory.
 """
+
+import hashlib
 
 from app.output_manager import OutputManager
 from app.logger import logger
@@ -15,6 +19,70 @@ class WorkflowEngine:
     def __init__(self, memory):
 
         self.memory = memory
+        self.topic = None
+
+    # --------------------------------------------------
+    # Workflow Context
+    # --------------------------------------------------
+
+    def set_topic(self, topic):
+
+        if not topic:
+
+            raise ValueError(
+                "Workflow topic cannot be empty."
+            )
+
+        if not isinstance(
+            topic,
+            str
+        ):
+
+            raise TypeError(
+                "Workflow topic must be a string."
+            )
+
+        topic = topic.strip()
+
+        if not topic:
+
+            raise ValueError(
+                "Workflow topic cannot be empty."
+            )
+
+        self.topic = topic
+
+    # --------------------------------------------------
+    # Topic Memory Key
+    # --------------------------------------------------
+
+    def _memory_key(
+        self,
+        step_name
+    ):
+
+        if not self.topic:
+
+            raise RuntimeError(
+                "Workflow topic is not set. "
+                "Call set_topic() before run_step()."
+            )
+
+        topic_hash = hashlib.sha256(
+            self.topic.lower().encode(
+                "utf-8"
+            )
+        ).hexdigest()[:16]
+
+        return (
+            f"workflow:"
+            f"{topic_hash}:"
+            f"{step_name}"
+        )
+
+    # --------------------------------------------------
+    # Run Step
+    # --------------------------------------------------
 
     def run_step(
         self,
@@ -32,26 +100,37 @@ class WorkflowEngine:
             f"Starting {step_name}"
         )
 
+        memory_key = self._memory_key(
+            step_name
+        )
+
         # -----------------------------
         # Resume Mode
         # -----------------------------
+
         if not force:
 
             cached = self.memory.get(
-                step_name
+                memory_key
             )
 
             if cached is not None:
 
                 print(
-                    f"✓ Resuming '{step_name}' from memory."
+                    f"✓ Resuming '{step_name}' "
+                    f"from memory."
                 )
 
                 logger.info(
-                    f"{step_name} loaded from memory."
+                    f"{step_name} loaded from "
+                    "topic memory."
                 )
 
                 return cached
+
+        # -----------------------------
+        # Execute Step
+        # -----------------------------
 
         try:
 
@@ -65,7 +144,7 @@ class WorkflowEngine:
             )
 
             self.memory.set(
-                step_name,
+                memory_key,
                 result
             )
 
