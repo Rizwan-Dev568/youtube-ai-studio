@@ -4,10 +4,18 @@ Image Generation Agent
 Generates actual images from approved
 image prompts and registers the resulting
 image assets.
+
+Supports safe disabled mode so the main
+workflow can run without making image API
+requests.
 """
 
+from config.settings import (
+    IMAGE_GENERATION_ENABLED,
+)
+
 from app.image_generation_service import (
-    ImageGenerationService
+    ImageGenerationService,
 )
 
 
@@ -15,9 +23,17 @@ class ImageGenerationAgent:
 
     def __init__(self):
 
-        self.service = (
-            ImageGenerationService()
+        self.enabled = (
+            IMAGE_GENERATION_ENABLED
         )
+
+        self.service = None
+
+        if self.enabled:
+
+            self.service = (
+                ImageGenerationService()
+            )
 
     def generate(
         self,
@@ -53,6 +69,30 @@ class ImageGenerationAgent:
             raise Exception(
                 "No image prompts found."
             )
+
+        # ------------------------------------------
+        # Safe / Disabled Mode
+        # ------------------------------------------
+
+        if not self.enabled:
+
+            print(
+                "\nImage generation disabled."
+            )
+
+            print(
+                "Skipping actual image generation."
+            )
+
+            return {
+                "images": [],
+                "enabled": False,
+                "status": "skipped",
+            }
+
+        # ------------------------------------------
+        # Actual Generation
+        # ------------------------------------------
 
         generated = []
 
@@ -100,5 +140,7 @@ class ImageGenerationAgent:
             )
 
         return {
-            "images": generated
+            "images": generated,
+            "enabled": True,
+            "status": "generated",
         }

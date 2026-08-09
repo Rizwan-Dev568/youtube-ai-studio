@@ -15,6 +15,7 @@ from agents.director_agent import DirectorAgent
 from agents.scene_planner_agent import ScenePlannerAgent
 from agents.character_profile_agent import CharacterProfileAgent
 from agents.image_prompt_agent import ImagePromptAgent
+from agents.image_generation_agent import ImageGenerationAgent
 from agents.video_prompt_agent import VideoPromptAgent
 from agents.voice_prompt_agent import VoicePromptAgent
 
@@ -46,6 +47,7 @@ class ManagerAgent:
         self.scene_planner = ScenePlannerAgent()
         self.character_profile = CharacterProfileAgent()
         self.image_prompt = ImagePromptAgent()
+        self.image_generation = ImageGenerationAgent()
         self.video_prompt = VideoPromptAgent()
         self.voice_prompt = VoicePromptAgent()
 
@@ -196,6 +198,18 @@ class ManagerAgent:
         )
 
         # ==========================================
+        # IMAGE GENERATION
+        # ==========================================
+
+        workflow["image_generation"] = (
+            self.workflow.run_step(
+                "image_generation",
+                self.image_generation.generate,
+                workflow["image_prompts"]
+            )
+        )
+
+        # ==========================================
         # VIDEO PROMPTS
         # ==========================================
 
@@ -312,6 +326,7 @@ class ManagerAgent:
             "scene_plan",
             "character_profiles",
             "image_prompts",
+            "image_generation",
             "video_prompts",
             "voice_prompt",
         ]
@@ -448,6 +463,58 @@ class ManagerAgent:
             )
 
         # ------------------------------------------
+        # Image generation
+        # ------------------------------------------
+
+        image_generation = (
+            workflow["image_generation"]
+        )
+
+        if not isinstance(
+            image_generation,
+            dict
+        ):
+
+            raise Exception(
+                "Final validation failed. "
+                "Image generation output is invalid."
+            )
+
+        generation_status = (
+            image_generation.get(
+                "status"
+            )
+        )
+
+        if generation_status not in (
+            "skipped",
+            "generated",
+        ):
+
+            raise Exception(
+                "Final validation failed. "
+                "Invalid image generation status: "
+                f"{generation_status}"
+            )
+
+        generated_images = (
+            image_generation.get(
+                "images",
+                []
+            )
+        )
+
+        if not isinstance(
+            generated_images,
+            list
+        ):
+
+            raise Exception(
+                "Final validation failed. "
+                "Generated images must contain a list."
+            )
+
+        # ------------------------------------------
         # Video prompts
         # ------------------------------------------
 
@@ -497,6 +564,7 @@ class ManagerAgent:
                 scene,
                 dict
             ):
+
                 raise Exception(
                     "Final validation failed. "
                     "Invalid scene object."
@@ -510,6 +578,7 @@ class ManagerAgent:
                 number,
                 int
             ):
+
                 scene_numbers.append(
                     number
                 )
@@ -522,6 +591,7 @@ class ManagerAgent:
                 image,
                 dict
             ):
+
                 raise Exception(
                     "Final validation failed. "
                     "Invalid image prompt object."
@@ -535,6 +605,7 @@ class ManagerAgent:
                 number,
                 int
             ):
+
                 image_numbers.append(
                     number
                 )
@@ -547,6 +618,7 @@ class ManagerAgent:
                 video,
                 dict
             ):
+
                 raise Exception(
                     "Final validation failed. "
                     "Invalid video prompt object."
@@ -560,6 +632,7 @@ class ManagerAgent:
                 number,
                 int
             ):
+
                 video_numbers.append(
                     number
                 )

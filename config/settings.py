@@ -85,6 +85,19 @@ IMAGE_PROVIDER = os.getenv(
     "gemini"
 )
 
+IMAGE_GENERATION_ENABLED = (
+    os.getenv(
+        "IMAGE_GENERATION_ENABLED",
+        "false"
+    ).lower()
+    in (
+        "1",
+        "true",
+        "yes",
+        "on",
+    )
+)
+
 IMAGE_GENERATION_MODEL = os.getenv(
     "IMAGE_GENERATION_MODEL",
     "gemini-3.1-flash-image"
