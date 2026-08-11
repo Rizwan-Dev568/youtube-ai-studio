@@ -56,6 +56,28 @@ class BaseAgent:
 
         return True
 
+    def _build_retry_prompt(
+        self,
+        original_prompt,
+        error
+    ):
+
+        return (
+            f"{original_prompt}\n\n"
+            "IMPORTANT CORRECTION:\n"
+            "The previous AI response failed "
+            "validation.\n\n"
+            f"Validation error:\n{error}\n\n"
+            "Generate a completely corrected "
+            "JSON response.\n"
+            "Do not omit any required key.\n"
+            "Do not rename any required key.\n"
+            "Do not add unexpected keys.\n"
+            "Every value must match the required "
+            "schema type exactly.\n"
+            "Return ONLY the JSON object."
+        )
+
     def ask(
         self,
         prompt,
@@ -71,6 +93,8 @@ class BaseAgent:
 
         last_error = None
 
+        current_prompt = prompt
+
         for attempt in range(
             self.MAX_RETRIES
         ):
@@ -83,7 +107,7 @@ class BaseAgent:
             try:
 
                 response = self.ai.ask(
-                    prompt,
+                    current_prompt,
                     schema=schema
                 )
 
@@ -92,6 +116,10 @@ class BaseAgent:
                     raise Exception(
                         "Empty AI response."
                     )
+
+                # ----------------------------------
+                # Parse JSON
+                # ----------------------------------
 
                 try:
 
@@ -115,9 +143,9 @@ class BaseAgent:
                         repaired
                     )
 
-                # -------------------------
+                # ----------------------------------
                 # Schema Validation
-                # -------------------------
+                # ----------------------------------
 
                 if schema:
 
@@ -126,9 +154,9 @@ class BaseAgent:
                         schema
                     )
 
-                # -------------------------
+                # ----------------------------------
                 # Quality Validation
-                # -------------------------
+                # ----------------------------------
 
                 if quality_validator:
 
@@ -166,7 +194,8 @@ class BaseAgent:
                     else:
 
                         raise Exception(
-                            "Unknown quality validation type: "
+                            "Unknown quality validation "
+                            "type: "
                             f"{quality_type}"
                         )
 
@@ -174,9 +203,9 @@ class BaseAgent:
                         "\n✓ Prompt Quality Passed"
                     )
 
-                # -------------------------
+                # ----------------------------------
                 # Save Successful Response
-                # -------------------------
+                # ----------------------------------
 
                 self.memory.set(
                     "last_response",
@@ -192,18 +221,20 @@ class BaseAgent:
                     f"{attempt + 1} Failed"
                 )
 
-                print(e)
+                print(
+                    f"Validation/Error: {e}"
+                )
 
                 last_error = e
 
-                # -------------------------
+                # ----------------------------------
                 # Delete Bad Cache
-                # -------------------------
+                # ----------------------------------
 
                 try:
 
                     self.ai.client.cache.delete(
-                        prompt
+                        current_prompt
                     )
 
                     print(
@@ -211,11 +242,12 @@ class BaseAgent:
                     )
 
                 except Exception:
+
                     pass
 
-                # -------------------------
-                # Retry
-                # -------------------------
+                # ----------------------------------
+                # Retry Preparation
+                # ----------------------------------
 
                 if (
                     attempt
@@ -223,8 +255,16 @@ class BaseAgent:
                     self.MAX_RETRIES - 1
                 ):
 
+                    current_prompt = (
+                        self._build_retry_prompt(
+                            prompt,
+                            str(e)
+                        )
+                    )
+
                     print(
-                        "\nRetrying AI generation..."
+                        "\nRetrying AI generation "
+                        "with validation feedback..."
                     )
 
                     continue
